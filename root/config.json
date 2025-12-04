@@ -49,7 +49,7 @@
             "open": true
         }
     ],
-    "menuWidth": 300,
+    "menuWidth": 400,
     "min": -120.0,
     "modulesDirectory": "./modules",
     "mpxLineWidth": 2.5,
