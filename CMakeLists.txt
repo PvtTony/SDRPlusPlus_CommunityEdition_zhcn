@@ -96,7 +96,7 @@ if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
 else()
     # Normal Flags
     if (MSVC)
-        set(SDRPP_COMPILER_FLAGS /O2 /Ob2 /std:c++17 /EHsc)
+        set(SDRPP_COMPILER_FLAGS /O2 /Ob2 /std:c++17 /EHsc /utf-8)
     elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         set(SDRPP_COMPILER_FLAGS -O3 -std=c++17 -Wno-unused-command-line-argument -undefined dynamic_lookup)
     else ()
