@@ -28,6 +28,13 @@ namespace style {
             return false;
         }
 
+        // Chinese font path
+        const std::string chineseFontPath = resDir + "/fonts/NotoSansSC-Regular.ttf";
+        // Is chinese font exists
+        if (!std::filesystem::exists(chineseFontPath)) {
+             flog::error("Chinese font file MISSING at: {0}", chineseFontPath);
+             // TODO: return false or use alternative font
+        }
         // Create base font range
         ImFontGlyphRangesBuilder baseBuilder;
         baseBuilder.AddRanges(fonts->GetGlyphRangesDefault());
@@ -51,10 +58,34 @@ namespace style {
         const ImWchar hugeRange[] = { 'S', 'S', 'D', 'D', 'R', 'R', '+', '+', ' ', ' ', 0 };
         hugeBuilder.AddRanges(hugeRange);
         hugeBuilder.BuildRanges(&hugeRanges);
-        
+
+        // Chinese font range
+        const ImWchar* chineseRanges = fonts->GetGlyphRangesChineseFull();
+
+        // Merge config
+        ImFontConfig mergeConfig;
+        mergeConfig.MergeMode = true;
+        mergeConfig.PixelSnapH = true; // Make font looks better
+
         // Add bigger fonts for frequency select and title
         baseFont = fonts->AddFontFromFileTTF(((std::string)(resDir + "/fonts/Roboto-Medium.ttf")).c_str(), 16.0f * uiScale, NULL, baseRanges.Data);
+        // Load chinese font
+        fonts->AddFontFromFileTTF(chineseFontPath.c_str(), 16.0f * uiScale, &mergeConfig, chineseRanges);
+        if (baseFont == nullptr) flog::error("Failed to load Base English font");
+
+        // Check chinese font is loaded successfully
+        ImFont* baseChineseFont = fonts->AddFontFromFileTTF(chineseFontPath.c_str(), 16.0f * uiScale, &mergeConfig, chineseRanges);
+        if (baseChineseFont == nullptr) {
+            flog::error("Failed to load Chinese font for Base! Likely OTF format issue or file corrupt.");
+            // TODO: fallback plan
+            // fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\msyh.ttc", 16.0f * uiScale, &mergeConfig, chineseRanges);
+        }
         titleFont = fonts->AddFontFromFileTTF(((std::string)(resDir + "/fonts/Roboto-Medium.ttf")).c_str(), 32.0f * uiScale, NULL, titleRanges.Data);
+        if (titleFont != nullptr) {
+            ImFont* titleChineseFont = fonts->AddFontFromFileTTF(chineseFontPath.c_str(), 32.0f * uiScale, &mergeConfig, chineseRanges);
+            if (titleChineseFont == nullptr) flog::error("Failed to load Chinese font for Title!");
+        }
+
         bigFont = fonts->AddFontFromFileTTF(((std::string)(resDir + "/fonts/Roboto-Medium.ttf")).c_str(), 45.0f * uiScale, NULL, bigRanges.Data);
         hugeFont = fonts->AddFontFromFileTTF(((std::string)(resDir + "/fonts/Roboto-Medium.ttf")).c_str(), 128.0f * uiScale, NULL, hugeRanges.Data);
 
