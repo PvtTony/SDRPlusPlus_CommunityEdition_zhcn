@@ -3,6 +3,8 @@
 #include <module.h>
 #include <module_com.h>
 #include "command_args.h"
+#include "i18n.h"
+#include <locale.h>
 
 namespace core {
     SDRPP_EXPORT ConfigManager configManager;

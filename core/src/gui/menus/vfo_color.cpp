@@ -5,6 +5,7 @@
 #include <string>
 #include <core.h>
 #include <map>
+#include <gui/i18n_core.h>
 
 namespace vfo_color_menu {
     std::map<std::string, ImVec4> vfoColors;
@@ -81,7 +82,7 @@ namespace vfo_color_menu {
         ImGui::TableNextRow();
 
         ImGui::TableSetColumnIndex(0);
-        if (ImGui::Button("Auto Color##vfo_color", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
+        if (ImGui::Button(_("Auto Color##vfo_color"), ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
             float delta = 1.0f / (float)gui::waterfall.vfos.size();
             float hue = 0;
             for (auto& [name, vfo] : gui::waterfall.vfos) {
@@ -99,7 +100,7 @@ namespace vfo_color_menu {
         }
 
         ImGui::TableSetColumnIndex(1);
-        if (ImGui::Button("Clear All##vfo_color", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
+        if (ImGui::Button(_("Clear All##vfo_color"), ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
             for (auto& [name, vfo] : gui::waterfall.vfos) {
                 vfoColors[name] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
                 vfo->color = IM_COL32(255, 255, 255, 50);

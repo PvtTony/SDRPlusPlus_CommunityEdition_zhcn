@@ -1,0 +1,234 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-05 06:06+0800\n"
+"PO-Revision-Date: 2025-12-05 06:13+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: decoder_modules/radio/src/radio_module.h:63
+msgid "NOAA APT"
+msgstr "NOAA 自动图像传输"
+
+#: decoder_modules/radio/src/radio_module.h:64
+msgid "Voice"
+msgstr "语音"
+
+#: decoder_modules/radio/src/radio_module.h:65
+msgid "Narrow Band"
+msgstr "窄带"
+
+#: decoder_modules/radio/src/radio_module.h:124
+msgid "Radio"
+msgstr "无线电"
+
+#: decoder_modules/radio/src/radio_module.h:198
+msgid "NFM##_"
+msgstr "窄带调频##_"
+
+#: decoder_modules/radio/src/radio_module.h:201
+msgid "WFM##_"
+msgstr "宽带调频##_"
+
+#: decoder_modules/radio/src/radio_module.h:205
+msgid "AM##_"
+msgstr "调幅##_"
+
+#: decoder_modules/radio/src/radio_module.h:208
+msgid "DSB##_"
+msgstr "双边带##_"
+
+#: decoder_modules/radio/src/radio_module.h:212
+msgid "USB##_"
+msgstr "上边带##_"
+
+#: decoder_modules/radio/src/radio_module.h:215
+msgid "CW##_"
+msgstr "等幅电报##_"
+
+#: decoder_modules/radio/src/radio_module.h:219
+msgid "LSB##_"
+msgstr "下边带##_"
+
+#: decoder_modules/radio/src/radio_module.h:222
+msgid "RAW##_"
+msgstr "原始输出##_"
+
+#: decoder_modules/radio/src/radio_module.h:230
+msgid "Bandwidth"
+msgstr "带宽"
+
+#: decoder_modules/radio/src/radio_module.h:239
+msgid "Snap Interval"
+msgstr "步进间隔"
+
+#: decoder_modules/radio/src/radio_module.h:251
+msgid "De-emphasis"
+msgstr "去加重处理"
+
+#: decoder_modules/radio/src/radio_module.h:260
+msgid "Noise blanker (W.I.P.)##_radio_nb_ena_"
+msgstr "噪声抑制器 (开发中)##_radio_nb_ena_"
+
+#: decoder_modules/radio/src/radio_module.h:264
+msgid ""
+"Reduces impulse noise and interference\n"
+"Useful for suppressing power line noise, ignition noise\n"
+"Higher values = more aggressive noise blanking"
+msgstr ""
+"抑制脉冲噪声和干扰\n"
+"适用于削弱电源线噪声、点火噪声\n"
+"数值越高 = 噪声抑制越强"
+
+#: decoder_modules/radio/src/radio_module.h:282
+msgid "Squelch##_radio_sqelch_ena_"
+msgstr "静噪##_radio_sqelch_ena_"
+
+#: decoder_modules/radio/src/radio_module.h:286
+msgid ""
+"Mutes audio when signal is below threshold (dBFS)\n"
+"Prevents listening to noise when no signal is present\n"
+"Lower values = more sensitive, higher values = less sensitive"
+msgstr ""
+"当信号低于阈值(dBFS)时静音\n"
+"防止在无信号时收听噪声\n"
+"数值越低 = 灵敏度越高，数值越高 = 灵敏度越低"
+
+#: decoder_modules/radio/src/radio_module.h:303
+msgid "IF Noise Reduction##_radio_fmifnr_ena_"
+msgstr "中频降噪##_radio_fmifnr_ena_"
+
+#: decoder_modules/radio/src/demodulators/am.h:43
+#: decoder_modules/radio/src/demodulators/cw.h:46
+#: decoder_modules/radio/src/demodulators/dsb.h:42
+#: decoder_modules/radio/src/demodulators/lsb.h:42
+#: decoder_modules/radio/src/demodulators/usb.h:43
+msgid "AGC Attack"
+msgstr "AGC 启动时间"
+
+#: decoder_modules/radio/src/demodulators/am.h:51
+#: decoder_modules/radio/src/demodulators/cw.h:54
+#: decoder_modules/radio/src/demodulators/dsb.h:50
+#: decoder_modules/radio/src/demodulators/lsb.h:50
+#: decoder_modules/radio/src/demodulators/usb.h:51
+msgid "AGC Decay"
+msgstr "AGC 衰减时间"
+
+#: decoder_modules/radio/src/demodulators/am.h:59
+msgid "Carrier AGC##_radio_am_carrier_agc_"
+msgstr "载波 AGC##_radio_am_carrier_agc_"
+
+#: decoder_modules/radio/src/demodulators/cw.h:62
+msgid "Tone Frequency"
+msgstr "音频频率"
+
+#: decoder_modules/radio/src/demodulators/cw.h:64
+msgid "Stereo##_radio_cw_tone_"
+msgstr "立体声##_radio_cw_tone_"
+
+#: decoder_modules/radio/src/demodulators/nfm.h:40
+#: decoder_modules/radio/src/demodulators/wfm.h:161
+msgid "Low Pass##_radio_wfm_lowpass_"
+msgstr "低通滤波##_radio_wfm_lowpass_"
+
+#: decoder_modules/radio/src/demodulators/nfm.h:46
+msgid "High Pass##_radio_wfm_highpass_"
+msgstr "高通滤波##_radio_wfm_highpass_"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:155
+msgid "Stereo##_radio_wfm_stereo_"
+msgstr "立体声##_radio_wfm_stereo_"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:167
+msgid "Decode RDS##_radio_wfm_rds_"
+msgstr "解码 RDS##_radio_wfm_rds_"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:176
+msgid "Advanced RDS Info##_radio_wfm_rds_info_"
+msgstr "高级 RDS 信息##_radio_wfm_rds_info_"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:184
+msgid "##_radio_wfm_rds_region_"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:199
+#: decoder_modules/radio/src/demodulators/wfm.h:229
+msgid "PI Code"
+msgstr "节目识别码"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:210
+#: decoder_modules/radio/src/demodulators/wfm.h:240
+msgid "Country Code"
+msgstr "国家代码"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:216
+#: decoder_modules/radio/src/demodulators/wfm.h:246
+msgid "Program Coverage"
+msgstr "节目覆盖范围"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:222
+#: decoder_modules/radio/src/demodulators/wfm.h:252
+msgid "Reference Number"
+msgstr "参考编号"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:260
+#: decoder_modules/radio/src/demodulators/wfm.h:272
+msgid "Program Type"
+msgstr "节目类型"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:280
+#: decoder_modules/radio/src/demodulators/wfm.h:287
+msgid "Music"
+msgstr "音乐"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:299
+msgid "Stereo Analysis##_radio_wfm_stereo_"
+msgstr "立体声分析##_radio_wfm_stereo_"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:326
+msgid "FM Multiplex Spectrum Analysis"
+msgstr "调频多路复用频谱分析"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:347
+msgid "MPX Frequency Spectrum (0-100 kHz)"
+msgstr "MPX频谱(0-100 kHz)"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:546
+msgid "Stereo Channel Analysis"
+msgstr "立体声通道分析"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:551
+msgid "L+R (Mono Signal)"
+msgstr "左+右(单声道信号)"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:556
+msgid "L-R (Stereo Difference)"
+msgstr "左-右(立体声差分)"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:561
+msgid "Left Channel"
+msgstr "左声道"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:566
+msgid "Right Channel"
+msgstr "右声道"
+
+#: decoder_modules/radio/src/demodulators/wfm.h:573
+msgid "MPX Component Legend:"
+msgstr "MPX组件图例: "
+
+#: decoder_modules/radio/src/demodulators/wfm.h:580
+msgid "Initializing FFT for spectrum analysis..."
+msgstr "正在初始化频谱分析的FFT..."

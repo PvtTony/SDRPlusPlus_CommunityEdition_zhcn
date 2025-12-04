@@ -152,19 +152,19 @@ namespace demod {
         }
 
         void showMenu() {
-            if (ImGui::Checkbox(("Stereo##_radio_wfm_stereo_" + name).c_str(), &_stereo)) {
+            if (ImGui::Checkbox((std::string(_("Stereo##_radio_wfm_stereo_")) + name).c_str(), &_stereo)) {
                 setStereo(_stereo);
                 _config->acquire();
                 _config->conf[name][getName()]["stereo"] = _stereo;
                 _config->release(true);
             }
-            if (ImGui::Checkbox(("Low Pass##_radio_wfm_lowpass_" + name).c_str(), &_lowPass)) {
+            if (ImGui::Checkbox((std::string(_("Low Pass##_radio_wfm_lowpass_")) + name).c_str(), &_lowPass)) {
                 demod.setLowPass(_lowPass);
                 _config->acquire();
                 _config->conf[name][getName()]["lowPass"] = _lowPass;
                 _config->release(true);
             }
-            if (ImGui::Checkbox(("Decode RDS##_radio_wfm_rds_" + name).c_str(), &_rds)) {
+            if (ImGui::Checkbox((std::string(_("Decode RDS##_radio_wfm_rds_")) + name).c_str(), &_rds)) {
                 demod.setRDSOut(_rds);
                 _config->acquire();
                 _config->conf[name][getName()]["rds"] = _rds;
@@ -173,7 +173,7 @@ namespace demod {
 
             // TODO: This might break when the entire radio module is disabled
             if (!_rds) { ImGui::BeginDisabled(); }
-            if (ImGui::Checkbox(("Advanced RDS Info##_radio_wfm_rds_info_" + name).c_str(), &_rdsInfo)) {
+            if (ImGui::Checkbox((std::string(_("Advanced RDS Info##_radio_wfm_rds_info_")) + name).c_str(), &_rdsInfo)) {
                 setAdvancedRds(_rdsInfo);
                 _config->acquire();
                 _config->conf[name][getName()]["rdsInfo"] = _rdsInfo;
@@ -196,7 +196,7 @@ namespace demod {
                 if (rdsDecode.piCodeValid()) {
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("PI Code");
+                    ImGui::TextUnformatted(_("PI Code"));
                     ImGui::TableSetColumnIndex(1);
                     if (rdsRegion == RDS_REGION_NORTH_AMERICA) {
                         ImGui::Text("0x%04X (%s)", rdsDecode.getPICode(), rdsDecode.getCallsign().c_str());
@@ -207,26 +207,26 @@ namespace demod {
                     
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("Country Code");
+                    ImGui::TextUnformatted(_("Country Code"));
                     ImGui::TableSetColumnIndex(1);
                     ImGui::Text("%d", rdsDecode.getCountryCode());
 
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("Program Coverage");
+                    ImGui::TextUnformatted(_("Program Coverage"));
                     ImGui::TableSetColumnIndex(1);
                     ImGui::Text("%s (%d)", rds::AREA_COVERAGE_TO_STR[rdsDecode.getProgramCoverage()], rdsDecode.getProgramCoverage());
 
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("Reference Number");
+                    ImGui::TextUnformatted(_("Reference Number"));
                     ImGui::TableSetColumnIndex(1);
                     ImGui::Text("%d", rdsDecode.getProgramRefNumber());
                 }
                 else {
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("PI Code");
+                    ImGui::TextUnformatted(_("PI Code"));
                     ImGui::TableSetColumnIndex(1);
                     if (rdsRegion == RDS_REGION_NORTH_AMERICA) {
                         ImGui::TextUnformatted("0x---- (----)");
@@ -237,19 +237,19 @@ namespace demod {
                     
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("Country Code");
+                    ImGui::TextUnformatted(_("Country Code"));
                     ImGui::TableSetColumnIndex(1);
                     ImGui::TextUnformatted("--");  // TODO: String
 
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("Program Coverage");
+                    ImGui::TextUnformatted(_("Program Coverage"));
                     ImGui::TableSetColumnIndex(1);
                     ImGui::TextUnformatted("------- (--)");
 
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("Reference Number");
+                    ImGui::TextUnformatted(_("Reference Number"));
                     ImGui::TableSetColumnIndex(1);
                     ImGui::TextUnformatted("--");
                 }
@@ -257,7 +257,7 @@ namespace demod {
                 if (rdsDecode.programTypeValid()) {
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("Program Type");
+                    ImGui::TextUnformatted(_("Program Type"));
                     ImGui::TableSetColumnIndex(1);
                     if (rdsRegion == RDS_REGION_NORTH_AMERICA) {
                         ImGui::Text("%s (%d)", rds::PROGRAM_TYPE_US_TO_STR[rdsDecode.getProgramType()], rdsDecode.getProgramType());
@@ -269,7 +269,7 @@ namespace demod {
                 else {
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("Program Type");
+                    ImGui::TextUnformatted(_("Program Type"));
                     ImGui::TableSetColumnIndex(1);
                     ImGui::TextUnformatted("------- (--)");  // TODO: String
                 }
@@ -277,14 +277,14 @@ namespace demod {
                 if (rdsDecode.musicValid()) {
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("Music");
+                    ImGui::TextUnformatted(_("Music"));
                     ImGui::TableSetColumnIndex(1);
                     ImGui::Text("%s", rdsDecode.getMusic() ? "Yes":"No");
                 }
                 else {
                     ImGui::TableNextRow();
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted("Music");
+                    ImGui::TextUnformatted(_("Music"));
                     ImGui::TableSetColumnIndex(1);
                     ImGui::TextUnformatted("---");
                 }
@@ -296,7 +296,7 @@ namespace demod {
             }
 
             // Stereo Analysis
-            if (ImGui::Checkbox(("Stereo Analysis##_radio_wfm_stereo_" + name).c_str(), &_stereoAnalysis)) {
+            if (ImGui::Checkbox((std::string(_("Stereo Analysis##_radio_wfm_stereo_")) + name).c_str(), &_stereoAnalysis)) {
                 // Update MPX output in demodulator
                 demod.setMPXOut(_stereoAnalysis);
                 
@@ -323,7 +323,7 @@ namespace demod {
             // Real-time MPX spectrum and channel analysis
             if (_stereoAnalysis) {
                 ImGui::Separator();
-                ImGui::Text("FM Multiplex Spectrum Analysis");
+                ImGui::Text(_("FM Multiplex Spectrum Analysis"));
                 
                 std::lock_guard<std::mutex> lock(mpxDataMutex);
                 
@@ -344,7 +344,7 @@ namespace demod {
                     
                     // Plot the spectrum
                     ImVec2 plotSize(800, 200);
-                    ImGui::Text("MPX Frequency Spectrum (0-100 kHz)");
+                    ImGui::Text(_("MPX Frequency Spectrum (0-100 kHz)"));
                     
                     // Custom plot with frequency axis
                     if (ImGui::BeginChild("MPXSpectrum", ImVec2(plotSize.x + 20, plotSize.y + 60), true)) {
@@ -543,41 +543,41 @@ namespace demod {
                     
                     // Time-domain channel analysis
                     ImGui::Separator();
-                    ImGui::Text("Stereo Channel Analysis");
+                    ImGui::Text(_("Stereo Channel Analysis"));
                     
                     // Use same width as MPX spectrum for consistency
                     ImVec2 timeGraphSize(plotSize.x, 60);
                     
-                    ImGui::Text("L+R (Mono Signal)");
+                    ImGui::Text(_("L+R (Mono Signal)"));
                     if (!lPlusR.empty()) {
                         ImGui::PlotLines("##mpx_mono", lPlusR.data(), 200, 0, NULL, -0.5f, 0.5f, timeGraphSize);
                     }
                     
-                    ImGui::Text("L-R (Stereo Difference)"); 
+                    ImGui::Text(_("L-R (Stereo Difference)")); 
                     if (!lMinusR.empty()) {
                         ImGui::PlotLines("##mpx_stereo", lMinusR.data(), 200, 0, NULL, -0.4f, 0.4f, timeGraphSize);
                     }
                     
-                    ImGui::Text("Left Channel");
+                    ImGui::Text(_("Left Channel"));
                     if (!leftChannel.empty()) {
                         ImGui::PlotLines("##mpx_left", leftChannel.data(), 200, 0, NULL, -0.6f, 0.6f, timeGraphSize);
                     }
                     
-                    ImGui::Text("Right Channel");
+                    ImGui::Text(_("Right Channel"));
                     if (!rightChannel.empty()) {
                         ImGui::PlotLines("##mpx_right", rightChannel.data(), 200, 0, NULL, -0.6f, 0.6f, timeGraphSize);
                     }
                     
                     // Modern legend with color-coded text
                     ImGui::Separator();
-                    ImGui::Text("MPX Component Legend:");
+                    ImGui::Text(_("MPX Component Legend:"));
                     ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.4f, 1.0f), "MONO"); ImGui::SameLine(); ImGui::Text("(0-15k) |");
                     ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 0.5f, 0.5f, 1.0f), "PILOT"); ImGui::SameLine(); ImGui::Text("(19k) |");
                     ImGui::SameLine(); ImGui::TextColored(ImVec4(0.5f, 1.0f, 0.5f, 1.0f), "STEREO"); ImGui::SameLine(); ImGui::Text("(38k) |");
                     ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 0.6f, 1.0f, 1.0f), "RDS"); ImGui::SameLine(); ImGui::Text("(57k) |");
                     ImGui::SameLine(); ImGui::TextColored(ImVec4(0.6f, 0.8f, 1.0f, 1.0f), "SCA"); ImGui::SameLine(); ImGui::Text("(67.65k, 92k)");
                 } else {
-                    ImGui::Text("Initializing FFT for spectrum analysis...");
+                    ImGui::Text(_("Initializing FFT for spectrum analysis..."));
                 }
             }
         }

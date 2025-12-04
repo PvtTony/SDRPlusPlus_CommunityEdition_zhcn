@@ -150,7 +150,7 @@ private:
         bool connected = _this->connected();
         gui::mainWindow.playButtonLocked = !connected;
 
-        ImGui::GenericDialog("##sdrpp_srv_src_err_dialog", _this->serverBusy, GENERIC_DIALOG_BUTTONS_OK, [=](){
+        ImGui::GenericDialog("##sdrpp_srv_src_err_dialog", _this->serverBusy, GENERIC_DIALOG_BUTTONS_OK.c_str(), [=](){
             ImGui::TextUnformatted("This server is already in use.");
         });
 

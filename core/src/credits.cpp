@@ -41,7 +41,8 @@ namespace sdrpp_credits {
         "fftw3 (fftw.org)",
         "glfw (Camilla Löwy)",
         "json (nlohmann)",
-        "Portable File Dialogs"
+        "Portable File Dialogs",
+        "GNU gettext"
     };
 
     const char* hardwareDonators[] = {

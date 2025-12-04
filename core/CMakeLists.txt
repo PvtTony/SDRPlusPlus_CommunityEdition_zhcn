@@ -111,6 +111,13 @@ if (MSVC)
     # ZSTD
     find_package(zstd CONFIG REQUIRED)
     target_link_libraries(sdrpp_core PUBLIC zstd::libzstd_shared)
+
+    # gettext
+    find_package(Intl REQUIRED)
+    if(Intl_FOUND)
+        target_link_libraries(sdrpp_core PUBLIC  Intl::Intl)
+        target_include_directories(sdrpp_core PUBLIC ${Intl_INCLUDE_DIRS})
+    endif()
 elseif (ANDROID)
     target_include_directories(sdrpp_core PUBLIC
         /sdr-kit/${ANDROID_ABI}/include
@@ -129,6 +136,7 @@ elseif (ANDROID)
 else()
     find_package(PkgConfig)
     find_package(OpenGL REQUIRED)
+    find_package(Intl REQUIRED)
 
     pkg_check_modules(FFTW3 REQUIRED fftw3f)
     pkg_check_modules(VOLK REQUIRED volk)
@@ -158,6 +166,11 @@ else()
         ${VOLK_LIBRARIES}
         ${LIBZSTD_LIBRARIES}
     )
+
+    if(Intl_FOUND)
+        target_link_libraries(sdrpp_core PUBLIC Intl::Intl)
+        target_include_directories(sdrpp_core PUBLIC ${Intl_INCLUDE_DIRS})
+    endif()
 
     if (NOT USE_INTERNAL_LIBCORRECT)
         pkg_check_modules(CORRECT REQUIRED libcorrect)

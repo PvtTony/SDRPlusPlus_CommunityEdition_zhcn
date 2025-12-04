@@ -9,6 +9,7 @@
 #include <gui/style.h>
 #include <utils/optionlist.h>
 #include <algorithm>
+#include <gui/i18n_core.h>
 
 // Scanner interface commands
 #define SCANNER_IFACE_CMD_GET_RUNNING   0
@@ -170,7 +171,7 @@ namespace displaymenu {
 
     void draw(void* ctx) {
         float menuWidth = ImGui::GetContentRegionAvail().x;
-        if (ImGui::Checkbox("Show Waterfall##_sdrpp", &showWaterfall)) {
+        if (ImGui::Checkbox(_("Show Waterfall##_sdrpp"), &showWaterfall)) {
             setWaterfallShown(showWaterfall);
         }
 
@@ -191,7 +192,7 @@ namespace displaymenu {
             style::beginDisabled();
         }
         
-        if (ImGui::Checkbox("Full Waterfall Update##_sdrpp", &fullWaterfallUpdate)) {
+        if (ImGui::Checkbox(_("Full Waterfall Update##_sdrpp"), &fullWaterfallUpdate)) {
             gui::waterfall.setFullWaterfallUpdate(fullWaterfallUpdate);
             core::configManager.acquire();
             core::configManager.conf["fullWaterfallUpdate"] = fullWaterfallUpdate;
@@ -202,11 +203,11 @@ namespace displaymenu {
             style::endDisabled();
             // Show tooltip explaining why it's disabled
             if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
-                ImGui::SetTooltip("Full Waterfall Update is disabled while Scanner is running\nto prevent UI freezing during fast scans");
+                ImGui::SetTooltip(_("Full Waterfall Update is disabled while Scanner is running\nto prevent UI freezing during fast scans"));
             }
         }
 
-        if (ImGui::Checkbox("Lock Menu Order##_sdrpp", &gui::menu.locked)) {
+        if (ImGui::Checkbox(_("Lock Menu Order##_sdrpp"), &gui::menu.locked)) {
             core::configManager.acquire();
             core::configManager.conf["lockMenuOrder"] = gui::menu.locked;
             core::configManager.release(true);
@@ -227,7 +228,7 @@ namespace displaymenu {
             core::configManager.release(true);
         }
 
-        if (ImGui::Checkbox("FFT Smoothing##_sdrpp", &fftSmoothing)) {
+        if (ImGui::Checkbox(_("FFT Smoothing##_sdrpp"), &fftSmoothing)) {
             gui::waterfall.setFFTSmoothing(fftSmoothing);
             core::configManager.acquire();
             core::configManager.conf["fftSmoothing"] = fftSmoothing;
@@ -243,7 +244,7 @@ namespace displaymenu {
             core::configManager.release(true);
         }
 
-        if (ImGui::Checkbox("SNR Smoothing##_sdrpp", &snrSmoothing)) {
+        if (ImGui::Checkbox(_("SNR Smoothing##_sdrpp"), &snrSmoothing)) {
             gui::waterfall.setSNRSmoothing(snrSmoothing);
             core::configManager.acquire();
             core::configManager.conf["snrSmoothing"] = snrSmoothing;
@@ -259,7 +260,7 @@ namespace displaymenu {
             core::configManager.release(true);
         }
 
-        ImGui::LeftLabel("High-DPI Scaling");
+        ImGui::LeftLabel(_("High-DPI Scaling"));
         ImGui::FillWidth();
         if (ImGui::Combo("##sdrpp_ui_scale", &uiScaleId, uiScales.txt)) {
             core::configManager.acquire();
@@ -268,7 +269,7 @@ namespace displaymenu {
             restartRequired = true;
         }
 
-        ImGui::LeftLabel("FFT Framerate");
+        ImGui::LeftLabel(_("FFT Framerate"));
         ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
         if (ImGui::InputInt("##sdrpp_fft_rate", &fftRate, 1, 10)) {
             fftRate = std::max<int>(1, fftRate);
@@ -280,8 +281,8 @@ namespace displaymenu {
         }
 
         // MPX Analysis Settings Section
-        if (ImGui::CollapsingHeader("MPX Analysis Settings")) {
-            ImGui::LeftLabel("MPX Refresh Rate");
+        if (ImGui::CollapsingHeader(_("MPX Analysis Settings"))) {
+            ImGui::LeftLabel(_("MPX Refresh Rate"));
             ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
             if (ImGui::InputInt("##sdrpp_mpx_rate", &mpxRefreshRate, 1, 10)) {
                 mpxRefreshRate = std::max<int>(1, mpxRefreshRate);
@@ -291,7 +292,7 @@ namespace displaymenu {
                 core::configManager.release(true);
             }
             
-            ImGui::LeftLabel("MPX Line Width");
+            ImGui::LeftLabel(_("MPX Line Width"));
             ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
             if (ImGui::SliderFloat("##sdrpp_mpx_width", &mpxLineWidth, 0.5f, 5.0f, "%.1f px")) {
                 core::configManager.acquire();
@@ -299,7 +300,7 @@ namespace displaymenu {
                 core::configManager.release(true);
             }
             
-            ImGui::LeftLabel("MPX Smoothing");
+            ImGui::LeftLabel(_("MPX Smoothing"));
             ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
             if (ImGui::SliderInt("##sdrpp_mpx_smooth", &mpxSmoothingFactor, 1, 10, "%d")) {
                 core::configManager.acquire();
@@ -307,11 +308,11 @@ namespace displaymenu {
                 core::configManager.release(true);
             }
             if (ImGui::IsItemHovered()) {
-                ImGui::SetTooltip("1 = No smoothing (noisy), 10 = Maximum smoothing (very smooth)");
+                ImGui::SetTooltip(_("1 = No smoothing (noisy), 10 = Maximum smoothing (very smooth)"));
             }
         }
 
-        ImGui::LeftLabel("FFT Size");
+        ImGui::LeftLabel(_("FFT Size"));
         ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
         if (ImGui::Combo("##sdrpp_fft_size", &fftSizeId, fftSizes.txt)) {
             sigpath::iqFrontEnd.setFFTSize(fftSizes.value(fftSizeId));
@@ -320,7 +321,7 @@ namespace displaymenu {
             core::configManager.release(true);
         }
 
-        ImGui::LeftLabel("FFT Window");
+        ImGui::LeftLabel(_("FFT Window"));
         ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
         if (ImGui::Combo("##sdrpp_fft_window", &selectedWindow, "Rectangular\0Blackman\0Nuttall\0")) {
             sigpath::iqFrontEnd.setFFTWindow(fftWindowList[selectedWindow]);
@@ -330,7 +331,7 @@ namespace displaymenu {
         }
 
         if (colorMapNames.size() > 0) {
-            ImGui::LeftLabel("Color Map");
+            ImGui::LeftLabel(_("Color Map"));
             ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
             if (ImGui::Combo("##_sdrpp_color_map_sel", &colorMapId, colorMapNamesTxt.c_str())) {
                 colormaps::Map map = colormaps::maps[colorMapNames[colorMapId]];
@@ -340,11 +341,11 @@ namespace displaymenu {
                 core::configManager.release(true);
                 colorMapAuthor = map.author;
             }
-            ImGui::Text("Color map Author: %s", colorMapAuthor.c_str());
+            ImGui::Text(_("Color map Author: %s"), colorMapAuthor.c_str());
         }
 
         if (restartRequired) {
-            ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "Restart required.");
+            ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), _("Restart required."));
         }
     }
 }

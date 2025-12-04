@@ -2,6 +2,7 @@
 #include <gui/gui.h>
 #include <core.h>
 #include <gui/style.h>
+#include <gui/i18n_core.h>
 
 namespace thememenu {
     int themeId;
@@ -51,7 +52,7 @@ namespace thememenu {
             ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(12.0f, 8.0f));
             ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
             
-            ImGui::Text("🎨 Visual Theme (Advanced Mode)");
+            ImGui::Text(_("🎨 Visual Theme (Advanced Mode)"));
             ImGui::SetNextItemWidth(menuWidth);
             
             if (ImGui::Combo("##theme_select_combo", &themeId, themeNamesTxt.c_str())) {
@@ -72,30 +73,30 @@ namespace thememenu {
                 
                 // Theme features showcase using standard ImGui components
                 ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.8f, 1.0f, 1.0f));
-                ImGui::Text("✨ Advanced Theme Features");
+                ImGui::Text(_("✨ Advanced Theme Features"));
                 ImGui::PopStyleColor();
                 
-                ImGui::BulletText("🔘 Smooth rounded corners (10px windows)");
-                ImGui::BulletText("🎨 Professional cyan accent theme");
-                ImGui::BulletText("📏 Refined padding and spacing");
-                ImGui::BulletText("🖼️ Clean borders for subtle definition");
-                ImGui::BulletText("📱 Comfortable, professional controls");
+                ImGui::BulletText(_("🔘 Smooth rounded corners (10px windows)"));
+                ImGui::BulletText(_("🎨 Professional cyan accent theme"));
+                ImGui::BulletText(_("📏 Refined padding and spacing"));
+                ImGui::BulletText(_("🖼️ Clean borders for subtle definition"));
+                ImGui::BulletText(_("📱 Comfortable, professional controls"));
                 
                 ImGui::Spacing();
                 
                 // Demo components using standard ImGui
                 ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 0.6f, 1.0f));
-                ImGui::Text("🔧 Enhanced Controls:");
+                ImGui::Text(_("🔧 Enhanced Controls:"));
                 ImGui::PopStyleColor();
                 
                 static bool demo_check = false;
-                ImGui::Checkbox("Enhanced Checkbox", &demo_check);
+                ImGui::Checkbox(_("Enhanced Checkbox"), &demo_check);
                 
                 static float demo_slider = 0.75f;
-                ImGui::SliderFloat("Smooth Slider", &demo_slider, 0.0f, 1.0f, "%.2f");
+                ImGui::SliderFloat(_("Smooth Slider"), &demo_slider, 0.0f, 1.0f, "%.2f");
                 
                 ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 6.0f);
-                if (ImGui::Button("Modern Button", ImVec2(120, 32))) {
+                if (ImGui::Button(_("Modern Button"), ImVec2(120, 32))) {
                     // Demo action
                 }
                 ImGui::PopStyleVar();
@@ -105,12 +106,12 @@ namespace thememenu {
                 ImGui::Spacing();
                 
                 ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.8f, 0.8f, 0.8f, 1.0f));
-                ImGui::TextWrapped("🌟 The Advanced theme provides a sophisticated, professional interface with refined rounded elements, elegant cyan accents, and carefully balanced spacing for a premium SDR experience.");
+                ImGui::TextWrapped(_("🌟 The Advanced theme provides a sophisticated, professional interface with refined rounded elements, elegant cyan accents, and carefully balanced spacing for a premium SDR experience."));
                 ImGui::PopStyleColor();
             }
         } else {
             // Standard theme selector for other themes
-            ImGui::LeftLabel("Theme");
+            ImGui::LeftLabel(_("Theme"));
             ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
             if (ImGui::Combo("##theme_select_combo", &themeId, themeNamesTxt.c_str())) {
                 applyTheme();
@@ -122,7 +123,7 @@ namespace thememenu {
             // Show a hint about the Advanced theme
             if (std::find(themeNames.begin(), themeNames.end(), "Advanced") != themeNames.end()) {
                 ImGui::Spacing();
-                ImGui::TextColored(ImVec4(0.0f, 0.8f, 1.0f, 1.0f), "💡 Try the 'Advanced' theme for a modern interface!");
+                ImGui::TextColored(ImVec4(0.0f, 0.8f, 1.0f, 1.0f), _("💡 Try the 'Advanced' theme for a modern interface!"));
             }
         }
     }

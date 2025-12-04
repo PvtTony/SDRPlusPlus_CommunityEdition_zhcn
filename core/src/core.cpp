@@ -104,6 +104,13 @@ int sdrpp_main(int argc, char* argv[]) {
         return -1;
     }
 
+    // gettext init
+    setlocale(LC_ALL, ""); 
+    const char* core_domain = "sdrpp_core";
+    bindtextdomain(core_domain, "./locale");
+    bind_textdomain_codeset(core_domain, "UTF-8");
+    textdomain(core_domain);
+
     // ======== DEFAULT CONFIG ========
     json defConfig;
     defConfig["bandColors"]["amateur"] = "#FF0000FF";

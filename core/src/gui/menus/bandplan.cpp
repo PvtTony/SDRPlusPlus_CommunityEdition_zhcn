@@ -3,13 +3,14 @@
 #include <gui/gui.h>
 #include <core.h>
 #include <gui/style.h>
+#include <gui/i18n_core.h>
 
 namespace bandplanmenu {
     int bandplanId;
     bool bandPlanEnabled;
     int bandPlanPos = 0;
 
-    const char* bandPlanPosTxt = "Bottom\0Top\0";
+    const char* bandPlanPosTxt = (std::string(_("Bottom")) + '\0' + _("Top") + '\0').c_str();
 
     void init() {
         // todo: check if the bandplan wasn't removed
@@ -45,7 +46,7 @@ namespace bandplanmenu {
         }
         ImGui::PopItemWidth();
 
-        ImGui::LeftLabel("Position");
+        ImGui::LeftLabel(_("Position"));
         ImGui::SetNextItemWidth(menuColumnWidth - ImGui::GetCursorPosX());
         if (ImGui::Combo("##_bandplan_pos_", &bandPlanPos, bandPlanPosTxt)) {
             gui::waterfall.setBandPlanPos(bandPlanPos);
@@ -54,14 +55,14 @@ namespace bandplanmenu {
             core::configManager.release(true);
         }
 
-        if (ImGui::Checkbox("Enabled", &bandPlanEnabled)) {
+        if (ImGui::Checkbox(_("Enabled"), &bandPlanEnabled)) {
             bandPlanEnabled ? gui::waterfall.showBandplan() : gui::waterfall.hideBandplan();
             core::configManager.acquire();
             core::configManager.conf["bandPlanEnabled"] = bandPlanEnabled;
             core::configManager.release(true);
         }
         bandplan::BandPlan_t plan = bandplan::bandplans[bandplan::bandplanNames[bandplanId]];
-        ImGui::Text("Country: %s (%s)", plan.countryName.c_str(), plan.countryCode.c_str());
-        ImGui::Text("Author: %s", plan.authorName.c_str());
+        ImGui::Text(_("Country: %s (%s)"), plan.countryName.c_str(), plan.countryCode.c_str());
+        ImGui::Text(_("Author: %s"), plan.authorName.c_str());
     }
 };

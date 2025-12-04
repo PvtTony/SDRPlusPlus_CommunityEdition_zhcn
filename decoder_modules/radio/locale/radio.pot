@@ -1,0 +1,227 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-05 06:06+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: decoder_modules/radio/src/radio_module.h:63
+msgid "NOAA APT"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:64
+msgid "Voice"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:65
+msgid "Narrow Band"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:124
+msgid "Radio"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:198
+msgid "NFM##_"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:201
+msgid "WFM##_"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:205
+msgid "AM##_"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:208
+msgid "DSB##_"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:212
+msgid "USB##_"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:215
+msgid "CW##_"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:219
+msgid "LSB##_"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:222
+msgid "RAW##_"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:230
+msgid "Bandwidth"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:239
+msgid "Snap Interval"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:251
+msgid "De-emphasis"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:260
+msgid "Noise blanker (W.I.P.)##_radio_nb_ena_"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:264
+msgid ""
+"Reduces impulse noise and interference\n"
+"Useful for suppressing power line noise, ignition noise\n"
+"Higher values = more aggressive noise blanking"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:282
+msgid "Squelch##_radio_sqelch_ena_"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:286
+msgid ""
+"Mutes audio when signal is below threshold (dBFS)\n"
+"Prevents listening to noise when no signal is present\n"
+"Lower values = more sensitive, higher values = less sensitive"
+msgstr ""
+
+#: decoder_modules/radio/src/radio_module.h:303
+msgid "IF Noise Reduction##_radio_fmifnr_ena_"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/am.h:43
+#: decoder_modules/radio/src/demodulators/cw.h:46
+#: decoder_modules/radio/src/demodulators/dsb.h:42
+#: decoder_modules/radio/src/demodulators/lsb.h:42
+#: decoder_modules/radio/src/demodulators/usb.h:43
+msgid "AGC Attack"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/am.h:51
+#: decoder_modules/radio/src/demodulators/cw.h:54
+#: decoder_modules/radio/src/demodulators/dsb.h:50
+#: decoder_modules/radio/src/demodulators/lsb.h:50
+#: decoder_modules/radio/src/demodulators/usb.h:51
+msgid "AGC Decay"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/am.h:59
+msgid "Carrier AGC##_radio_am_carrier_agc_"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/cw.h:62
+msgid "Tone Frequency"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/cw.h:64
+msgid "Stereo##_radio_cw_tone_"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/nfm.h:40
+#: decoder_modules/radio/src/demodulators/wfm.h:161
+msgid "Low Pass##_radio_wfm_lowpass_"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/nfm.h:46
+msgid "High Pass##_radio_wfm_highpass_"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:155
+msgid "Stereo##_radio_wfm_stereo_"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:167
+msgid "Decode RDS##_radio_wfm_rds_"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:176
+msgid "Advanced RDS Info##_radio_wfm_rds_info_"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:184
+msgid "##_radio_wfm_rds_region_"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:199
+#: decoder_modules/radio/src/demodulators/wfm.h:229
+msgid "PI Code"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:210
+#: decoder_modules/radio/src/demodulators/wfm.h:240
+msgid "Country Code"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:216
+#: decoder_modules/radio/src/demodulators/wfm.h:246
+msgid "Program Coverage"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:222
+#: decoder_modules/radio/src/demodulators/wfm.h:252
+msgid "Reference Number"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:260
+#: decoder_modules/radio/src/demodulators/wfm.h:272
+msgid "Program Type"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:280
+#: decoder_modules/radio/src/demodulators/wfm.h:287
+msgid "Music"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:299
+msgid "Stereo Analysis##_radio_wfm_stereo_"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:326
+msgid "FM Multiplex Spectrum Analysis"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:347
+msgid "MPX Frequency Spectrum (0-100 kHz)"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:546
+msgid "Stereo Channel Analysis"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:551
+msgid "L+R (Mono Signal)"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:556
+msgid "L-R (Stereo Difference)"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:561
+msgid "Left Channel"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:566
+msgid "Right Channel"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:573
+msgid "MPX Component Legend:"
+msgstr ""
+
+#: decoder_modules/radio/src/demodulators/wfm.h:580
+msgid "Initializing FFT for spectrum analysis..."
+msgstr ""

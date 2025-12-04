@@ -1,0 +1,9 @@
+decoder_modules/radio/src/radio_module.h
+decoder_modules/radio/src/demodulators/am.h
+decoder_modules/radio/src/demodulators/cw.h
+decoder_modules/radio/src/demodulators/dsb.h
+decoder_modules/radio/src/demodulators/lsb.h
+decoder_modules/radio/src/demodulators/nfm.h
+decoder_modules/radio/src/demodulators/raw.h
+decoder_modules/radio/src/demodulators/usb.h
+decoder_modules/radio/src/demodulators/wfm.h

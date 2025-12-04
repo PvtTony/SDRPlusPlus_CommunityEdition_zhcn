@@ -1035,7 +1035,7 @@ private:
         if (_this->selectedListName == "") { style::endDisabled(); }
 
         // List delete confirmation
-        if (ImGui::GenericDialog(("freq_manager_del_list_confirm" + _this->name).c_str(), _this->deleteListOpen, GENERIC_DIALOG_BUTTONS_YES_NO, [_this]() {
+        if (ImGui::GenericDialog(("freq_manager_del_list_confirm" + _this->name).c_str(), _this->deleteListOpen, GENERIC_DIALOG_BUTTONS_YES_NO.c_str(), [_this]() {
                 ImGui::Text("Deleting list named \"%s\". Are you sure?", _this->selectedListName.c_str());
             }) == GENERIC_DIALOG_BUTTON_YES) {
             config.acquire();
@@ -1169,7 +1169,7 @@ private:
 
         // Bookmark delete confirm dialog
         // List delete confirmation
-        if (ImGui::GenericDialog(("freq_manager_del_list_confirm" + _this->name).c_str(), _this->deleteBookmarksOpen, GENERIC_DIALOG_BUTTONS_YES_NO, [_this]() {
+        if (ImGui::GenericDialog(("freq_manager_del_list_confirm" + _this->name).c_str(), _this->deleteBookmarksOpen, GENERIC_DIALOG_BUTTONS_YES_NO.c_str(), [_this]() {
                 ImGui::TextUnformatted("Deleting selected bookmaks. Are you sure?");
             }) == GENERIC_DIALOG_BUTTON_YES) {
             for (auto& _name : selectedNames) { _this->bookmarks.erase(_name); }

@@ -1,0 +1,462 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-05 06:06+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: core/src/gui/dialogs/credits.cpp:36
+msgid ""
+"A community-driven fork welcoming all contributors and AI-enhanced "
+"development\n"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:37
+msgid ""
+"Building upon the original SDR++ project by Alexandre Rouma (ON5RYZ)\n"
+"\n"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:41
+msgid "Community Edition Team"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:42
+msgid "Miguel Gomes (Project Lead)"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:43
+msgid "AI-Enhanced Development"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:44
+msgid "Community Contributors"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:47
+msgid "Special Contributors"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:48
+msgid "PeiusMars (Parks-McClellan DSP and FFT Auto-Ranging)"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:49
+msgid "crackerjacques (Spiritbox Emulator)"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:50
+msgid "Axpelle (Discrete Recording System Feature Request)"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:53
+msgid "Key Features"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:54
+msgid "Discrete Audio Recording System"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:55
+msgid "MPX Analysis for FM Broadcasting"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:56
+msgid "Enhanced Scanner with Frequency Manager"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:57
+msgid "Cross-Platform Build Improvements"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:58
+msgid "Community-First Development"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:61
+msgid "Core Libraries"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:67
+msgid "Acknowledgments"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:68
+msgid "Original SDR++ project and contributors"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:69
+msgid "Open source community"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:70
+msgid "Hardware and software donators"
+msgstr ""
+
+#: core/src/gui/dialogs/credits.cpp:82
+#, c-format
+msgid "SDR++ CE  %s  (Built at %s, %s)"
+msgstr ""
+
+#: core/src/gui/dialogs/dialog_box.h:8 core/src/gui/dialogs/dialog_box.h:11
+msgid "Ok"
+msgstr ""
+
+#: core/src/gui/dialogs/dialog_box.h:9
+msgid "Yes"
+msgstr ""
+
+#: core/src/gui/dialogs/dialog_box.h:9
+msgid "No"
+msgstr ""
+
+#: core/src/gui/dialogs/dialog_box.h:10 core/src/gui/menus/source.cpp:270
+msgid "Apply"
+msgstr ""
+
+#: core/src/gui/dialogs/dialog_box.h:10 core/src/gui/dialogs/dialog_box.h:11
+#: core/src/gui/menus/source.cpp:276
+msgid "Cancel"
+msgstr ""
+
+#: core/src/gui/menus/bandplan.cpp:13
+msgid "Bottom"
+msgstr ""
+
+#: core/src/gui/menus/bandplan.cpp:13
+msgid "Top"
+msgstr ""
+
+#: core/src/gui/menus/bandplan.cpp:49
+msgid "Position"
+msgstr ""
+
+#: core/src/gui/menus/bandplan.cpp:58
+msgid "Enabled"
+msgstr ""
+
+#: core/src/gui/menus/bandplan.cpp:65
+#, c-format
+msgid "Country: %s (%s)"
+msgstr ""
+
+#: core/src/gui/menus/bandplan.cpp:66
+#, c-format
+msgid "Author: %s"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:174
+msgid "Show Waterfall##_sdrpp"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:195
+msgid "Full Waterfall Update##_sdrpp"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:206
+msgid ""
+"Full Waterfall Update is disabled while Scanner is running\n"
+"to prevent UI freezing during fast scans"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:210
+msgid "Lock Menu Order##_sdrpp"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:231
+msgid "FFT Smoothing##_sdrpp"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:247
+msgid "SNR Smoothing##_sdrpp"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:263
+msgid "High-DPI Scaling"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:272
+msgid "FFT Framerate"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:284
+msgid "MPX Analysis Settings"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:285
+msgid "MPX Refresh Rate"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:295
+msgid "MPX Line Width"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:303
+msgid "MPX Smoothing"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:311
+msgid "1 = No smoothing (noisy), 10 = Maximum smoothing (very smooth)"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:315
+msgid "FFT Size"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:324
+msgid "FFT Window"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:334
+msgid "Color Map"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:344
+#, c-format
+msgid "Color map Author: %s"
+msgstr ""
+
+#: core/src/gui/menus/display.cpp:348
+msgid "Restart required."
+msgstr ""
+
+#: core/src/gui/menus/module_manager.cpp:44
+#: core/src/gui/menus/module_manager.cpp:85 core/src/gui/menus/source.cpp:250
+msgid "Name"
+msgstr ""
+
+#: core/src/gui/menus/module_manager.cpp:45
+#: core/src/gui/menus/module_manager.cpp:86
+msgid "Type"
+msgstr ""
+
+#: core/src/gui/menus/module_manager.cpp:73
+#, c-format
+msgid "Deleting \"%s\". Are you sure?"
+msgstr ""
+
+#: core/src/gui/menus/module_manager.cpp:107
+msgid "Could not create new instance of "
+msgstr ""
+
+#: core/src/gui/menus/source.cpp:246
+msgid "Add offset##sdrpp_add_offset_dialog_"
+msgstr ""
+
+#: core/src/gui/menus/source.cpp:254 core/src/gui/menus/source.cpp:352
+msgid "Offset"
+msgstr ""
+
+#: core/src/gui/menus/source.cpp:263
+msgid "An offset with the given name already exists."
+msgstr ""
+
+#: core/src/gui/menus/source.cpp:266
+msgid "The given name is reserved."
+msgstr ""
+
+#: core/src/gui/menus/source.cpp:305
+msgid "IQ Correction##_sdrpp_iq_corr"
+msgstr ""
+
+#: core/src/gui/menus/source.cpp:312
+msgid "Invert IQ##_sdrpp_inv_iq"
+msgstr ""
+
+#: core/src/gui/menus/source.cpp:319
+msgid "Offset mode"
+msgstr ""
+
+#: core/src/gui/menus/source.cpp:344
+#, c-format
+msgid "Deleting offset named \"%s\". Are you sure?"
+msgstr ""
+
+#: core/src/gui/menus/source.cpp:369
+msgid "Decimation"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:55
+msgid "🎨 Visual Theme (Advanced Mode)"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:76
+msgid "✨ Advanced Theme Features"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:79
+msgid "🔘 Smooth rounded corners (10px windows)"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:80
+msgid "🎨 Professional cyan accent theme"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:81
+msgid "📏 Refined padding and spacing"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:82
+msgid "🖼️ Clean borders for subtle definition"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:83
+msgid "📱 Comfortable, professional controls"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:89
+msgid "🔧 Enhanced Controls:"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:93
+msgid "Enhanced Checkbox"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:96
+msgid "Smooth Slider"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:99
+msgid "Modern Button"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:109
+msgid ""
+"🌟 The Advanced theme provides a sophisticated, professional interface with "
+"refined rounded elements, elegant cyan accents, and carefully balanced "
+"spacing for a premium SDR experience."
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:114 core/src/gui/main_window.cpp:78
+msgid "Theme"
+msgstr ""
+
+#: core/src/gui/menus/theme.cpp:126
+msgid "💡 Try the 'Advanced' theme for a modern interface!"
+msgstr ""
+
+#: core/src/gui/menus/vfo_color.cpp:85
+msgid "Auto Color##vfo_color"
+msgstr ""
+
+#: core/src/gui/menus/vfo_color.cpp:103
+msgid "Clear All##vfo_color"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:33
+msgid "Initializing UI"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:74
+msgid "Source"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:75
+msgid "Sinks"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:76
+msgid "Band Plan"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:77
+msgid "Display"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:79
+msgid "VFO Color"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:80
+msgid "Module Manager"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:110 core/src/gui/main_window.cpp:129
+#: core/src/gui/main_window.cpp:152
+msgid "Loading "
+msgstr ""
+
+#: core/src/gui/main_window.cpp:141
+msgid "Initializing "
+msgstr ""
+
+#: core/src/gui/main_window.cpp:147
+msgid "Loading color maps"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:178
+msgid "Loading configuration"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:669
+msgid "Debug"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:670
+#, c-format
+msgid "Frame time: %.3f ms/frame"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:671
+#, c-format
+msgid "Framerate: %.1f FPS"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:672
+#, c-format
+msgid "Center Frequency: %.0f Hz"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:673
+#, c-format
+msgid "Source name: %s"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:674
+msgid "Show demo window"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:675
+#, c-format
+msgid "ImGui version: %s"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:681
+msgid "Test Bug"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:685
+msgid "Testing something"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:690
+msgid "WF Single Click"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:691
+msgid "Lock Menu Order"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:781
+msgid "Zoom"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:804
+msgid "Max"
+msgstr ""
+
+#: core/src/gui/main_window.cpp:816
+msgid "Min"
+msgstr ""

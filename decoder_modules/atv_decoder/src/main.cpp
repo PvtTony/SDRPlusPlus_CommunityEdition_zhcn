@@ -24,6 +24,8 @@
 #include <dsp/math/normalize_phase.h>
 #include <fstream>
 
+#include <libintl.h>
+
 #define CONCAT(a, b) ((std::string(a) + b).c_str())
 
 SDRPP_MOD_INFO{/* Name:            */ "atv_decoder",

@@ -27,9 +27,10 @@
 #include <gui/colormaps.h>
 #include <gui/widgets/snr_meter.h>
 #include <gui/tuner.h>
+#include <gui/i18n_core.h>
 
 void MainWindow::init() {
-    LoadingScreen::show("Initializing UI");
+    LoadingScreen::show(_("Initializing UI"));
     gui::waterfall.init();
     gui::waterfall.setRawFFTSize(fftSize);
 
@@ -70,13 +71,13 @@ void MainWindow::init() {
         gui::menu.order.push_back(opt);
     }
 
-    gui::menu.registerEntry("Source", sourcemenu::draw, NULL);
-    gui::menu.registerEntry("Sinks", sinkmenu::draw, NULL);
-    gui::menu.registerEntry("Band Plan", bandplanmenu::draw, NULL);
-    gui::menu.registerEntry("Display", displaymenu::draw, NULL);
-    gui::menu.registerEntry("Theme", thememenu::draw, NULL);
-    gui::menu.registerEntry("VFO Color", vfo_color_menu::draw, NULL);
-    gui::menu.registerEntry("Module Manager", module_manager_menu::draw, NULL);
+    gui::menu.registerEntry(_("Source"), sourcemenu::draw, NULL);
+    gui::menu.registerEntry(_("Sinks"), sinkmenu::draw, NULL);
+    gui::menu.registerEntry(_("Band Plan"), bandplanmenu::draw, NULL);
+    gui::menu.registerEntry(_("Display"), displaymenu::draw, NULL);
+    gui::menu.registerEntry(_("Theme"), thememenu::draw, NULL);
+    gui::menu.registerEntry(_("VFO Color"), vfo_color_menu::draw, NULL);
+    gui::menu.registerEntry(_("Module Manager"), module_manager_menu::draw, NULL);
 
     gui::freqSelect.init();
 
@@ -106,7 +107,7 @@ void MainWindow::init() {
             }
             if (!file.is_regular_file()) { continue; }
             flog::info("Loading {0}", path);
-            LoadingScreen::show("Loading " + file.path().filename().string());
+            LoadingScreen::show(std::string(_("Loading ")) + file.path().filename().string());
             core::moduleManager.loadModule(path);
         }
     }
@@ -125,7 +126,7 @@ void MainWindow::init() {
 #ifndef __ANDROID__
         std::string apath = std::filesystem::absolute(path).string();
         flog::info("Loading {0}", apath);
-        LoadingScreen::show("Loading " + std::filesystem::path(path).filename().string());
+        LoadingScreen::show(std::string(_("Loading ")) + std::filesystem::path(path).filename().string());
         core::moduleManager.loadModule(apath);
 #else
         core::moduleManager.loadModule(path);
@@ -137,18 +138,18 @@ void MainWindow::init() {
         std::string mod = _module["module"];
         bool enabled = _module["enabled"];
         flog::info("Initializing {0} ({1})", name, mod);
-        LoadingScreen::show("Initializing " + name + " (" + mod + ")");
+        LoadingScreen::show(std::string(_("Initializing ")) + name + " (" + mod + ")");
         core::moduleManager.createInstance(name, mod);
         if (!enabled) { core::moduleManager.disableInstance(name); }
     }
 
     // Load color maps
-    LoadingScreen::show("Loading color maps");
+    LoadingScreen::show(_("Loading color maps"));
     flog::info("Loading color maps");
     if (std::filesystem::is_directory(resourcesDir + "/colormaps")) {
         for (const auto& file : std::filesystem::directory_iterator(resourcesDir + "/colormaps")) {
             std::string path = file.path().generic_string();
-            LoadingScreen::show("Loading " + file.path().filename().string());
+            LoadingScreen::show(std::string(_("Loading ")) + file.path().filename().string());
             flog::info("Loading {0}", path);
             if (file.path().extension().generic_string() != ".json") {
                 continue;
@@ -174,7 +175,7 @@ void MainWindow::init() {
     // Fix gain not updated on startup, soapysdr
 
     // Update UI settings
-    LoadingScreen::show("Loading configuration");
+    LoadingScreen::show(_("Loading configuration"));
     core::configManager.acquire();
     fftMin = core::configManager.conf["min"];
     fftMax = core::configManager.conf["max"];
@@ -665,29 +666,29 @@ void MainWindow::draw() {
             firstMenuRender = false;
         }
 
-        if (ImGui::CollapsingHeader("Debug")) {
-            ImGui::Text("Frame time: %.3f ms/frame", ImGui::GetIO().DeltaTime * 1000.0f);
-            ImGui::Text("Framerate: %.1f FPS", ImGui::GetIO().Framerate);
-            ImGui::Text("Center Frequency: %.0f Hz", gui::waterfall.getCenterFrequency());
-            ImGui::Text("Source name: %s", sourceName.c_str());
-            ImGui::Checkbox("Show demo window", &demoWindow);
-            ImGui::Text("ImGui version: %s", ImGui::GetVersion());
+        if (ImGui::CollapsingHeader(_("Debug"))) {
+            ImGui::Text(_("Frame time: %.3f ms/frame"), ImGui::GetIO().DeltaTime * 1000.0f);
+            ImGui::Text(_("Framerate: %.1f FPS"), ImGui::GetIO().Framerate);
+            ImGui::Text(_("Center Frequency: %.0f Hz"), gui::waterfall.getCenterFrequency());
+            ImGui::Text(_("Source name: %s"), sourceName.c_str());
+            ImGui::Checkbox(_("Show demo window"), &demoWindow);
+            ImGui::Text(_("ImGui version: %s"), ImGui::GetVersion());
 
             // ImGui::Checkbox("Bypass buffering", &sigpath::iqFrontEnd.inputBuffer.bypass);
 
             // ImGui::Text("Buffering: %d", (sigpath::iqFrontEnd.inputBuffer.writeCur - sigpath::iqFrontEnd.inputBuffer.readCur + 32) % 32);
 
-            if (ImGui::Button("Test Bug")) {
+            if (ImGui::Button(_("Test Bug"))) {
                 flog::error("Will this make the software crash?");
             }
 
-            if (ImGui::Button("Testing something")) {
+            if (ImGui::Button(_("Testing something"))) {
                 gui::menu.order[0].open = true;
                 firstMenuRender = true;
             }
 
-            ImGui::Checkbox("WF Single Click", &gui::waterfall.VFOMoveSingleClick);
-            ImGui::Checkbox("Lock Menu Order", &gui::menu.locked);
+            ImGui::Checkbox(_("WF Single Click"), &gui::waterfall.VFOMoveSingleClick);
+            ImGui::Checkbox(_("Lock Menu Order"), &gui::menu.locked);
 
             ImGui::Spacing();
         }
@@ -777,7 +778,7 @@ void MainWindow::draw() {
     ImGui::BeginChild("WaterfallControls");
 
     ImGui::SetCursorPosX((ImGui::GetWindowSize().x / 2.0) - (ImGui::CalcTextSize("Zoom").x / 2.0));
-    ImGui::TextUnformatted("Zoom");
+    ImGui::TextUnformatted(_("Zoom"));
     ImGui::SetCursorPosX((ImGui::GetWindowSize().x / 2.0) - 10 * style::uiScale);
     ImVec2 wfSliderSize(20.0 * style::uiScale, 150.0 * style::uiScale);
     if (ImGui::VSliderFloat("##_7_", wfSliderSize, &bw, 1.0, 0.0, "")) {
@@ -800,7 +801,7 @@ void MainWindow::draw() {
     ImGui::NewLine();
 
     ImGui::SetCursorPosX((ImGui::GetWindowSize().x / 2.0) - (ImGui::CalcTextSize("Max").x / 2.0));
-    ImGui::TextUnformatted("Max");
+    ImGui::TextUnformatted(_("Max"));
     ImGui::SetCursorPosX((ImGui::GetWindowSize().x / 2.0) - 10 * style::uiScale);
     if (ImGui::VSliderFloat("##_8_", wfSliderSize, &fftMax, 0.0, -160.0f, "")) {
         fftMax = std::max<float>(fftMax, fftMin + 10);
@@ -812,7 +813,7 @@ void MainWindow::draw() {
     ImGui::NewLine();
 
     ImGui::SetCursorPosX((ImGui::GetWindowSize().x / 2.0) - (ImGui::CalcTextSize("Min").x / 2.0));
-    ImGui::TextUnformatted("Min");
+    ImGui::TextUnformatted(_("Min"));
     ImGui::SetCursorPosX((ImGui::GetWindowSize().x / 2.0) - 10 * style::uiScale);
     ImGui::SetItemUsingMouseWheel();
     if (ImGui::VSliderFloat("##_9_", wfSliderSize, &fftMin, 0.0, -160.0f, "")) {

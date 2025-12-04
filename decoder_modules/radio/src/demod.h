@@ -4,6 +4,7 @@
 #include <gui/widgets/waterfall.h>
 #include <config.h>
 #include <utils/event.h>
+#include "i18n_radio.h"
 
 enum DeemphasisMode {
     DEEMP_MODE_22US,

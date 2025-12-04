@@ -278,7 +278,7 @@ private:
         float menuWidth = ImGui::GetContentRegionAvail().x;
 
         // Error message box
-        ImGui::GenericDialog("##iq_exporter_err_", _this->showError, GENERIC_DIALOG_BUTTONS_OK, [=](){
+        ImGui::GenericDialog("##iq_exporter_err_", _this->showError, GENERIC_DIALOG_BUTTONS_OK.c_str(), [=](){
             ImGui::Text("Error: %s", _this->errorStr.c_str());
         });
         

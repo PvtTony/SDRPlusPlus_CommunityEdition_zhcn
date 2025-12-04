@@ -1,0 +1,9 @@
+core/src/gui/dialogs/credits.cpp
+core/src/gui/dialogs/dialog_box.h
+core/src/gui/menus/bandplan.cpp
+core/src/gui/menus/display.cpp
+core/src/gui/menus/module_manager.cpp
+core/src/gui/menus/source.cpp
+core/src/gui/menus/theme.cpp
+core/src/gui/menus/vfo_color.cpp
+core/src/gui/main_window.cpp

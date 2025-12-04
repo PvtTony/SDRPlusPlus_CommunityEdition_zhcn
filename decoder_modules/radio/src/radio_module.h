@@ -2,6 +2,8 @@
 #include <imgui.h>
 #include <module.h>
 #include <gui/style.h>
+#include <libintl.h>
+#include <i18n_radio.h>
 
 // RAII guard for style disabling to ensure proper pairing of begin/end calls
 struct DisabledScope {
@@ -29,6 +31,7 @@ ConfigManager config;
 
 #define CONCAT(a, b) ((std::string(a) + b).c_str())
 
+
 std::map<DeemphasisMode, double> deempTaus = {
     { DEEMP_MODE_22US, 22e-6 },
     { DEEMP_MODE_50US, 50e-6 },
@@ -47,15 +50,19 @@ public:
     RadioModule(std::string name) {
         this->name = name;
 
+        // Initialize gettext domain
+        bindtextdomain(MODULE_DOMAIN, "./locale");
+        bind_textdomain_codeset(MODULE_DOMAIN, "UTF-8");
+
         // Initialize option lists
         deempModes.define("None", DEEMP_MODE_NONE);
         deempModes.define("22us", DEEMP_MODE_22US);
         deempModes.define("50us", DEEMP_MODE_50US);
         deempModes.define("75us", DEEMP_MODE_75US);
 
-        ifnrPresets.define("NOAA APT", IFNR_PRESET_NOAA_APT);
-        ifnrPresets.define("Voice", IFNR_PRESET_VOICE);
-        ifnrPresets.define("Narrow Band", IFNR_PRESET_NARROW_BAND);
+        ifnrPresets.define(_("NOAA APT"), IFNR_PRESET_NOAA_APT);
+        ifnrPresets.define(_("Voice"), IFNR_PRESET_VOICE);
+        ifnrPresets.define(_("Narrow Band"), IFNR_PRESET_NARROW_BAND);
 
         // Initialize the config if it doesn't exist
         bool created = false;
@@ -114,7 +121,7 @@ public:
         stream.start();
 
         // Register the menu
-        gui::menu.registerEntry(name, menuHandler, this, this);
+        gui::menu.registerEntry(_("Radio"), menuHandler, this, this);
 
         // Register the module interface
         core::modComManager.registerInterface("radio", name, moduleInterfaceHandler, this);
@@ -188,31 +195,31 @@ private:
         ImGui::BeginGroup();
 
         ImGui::Columns(4, CONCAT("RadioModeColumns##_", _this->name), false);
-        if (ImGui::RadioButton(CONCAT("NFM##_", _this->name), _this->selectedDemodID == 0) && _this->selectedDemodID != 0) {
+        if (ImGui::RadioButton(CONCAT(_("NFM##_"), _this->name), _this->selectedDemodID == 0) && _this->selectedDemodID != 0) {
             _this->selectDemodByID(RADIO_DEMOD_NFM);
         }
-        if (ImGui::RadioButton(CONCAT("WFM##_", _this->name), _this->selectedDemodID == 1) && _this->selectedDemodID != 1) {
+        if (ImGui::RadioButton(CONCAT(_("WFM##_"), _this->name), _this->selectedDemodID == 1) && _this->selectedDemodID != 1) {
             _this->selectDemodByID(RADIO_DEMOD_WFM);
         }
         ImGui::NextColumn();
-        if (ImGui::RadioButton(CONCAT("AM##_", _this->name), _this->selectedDemodID == 2) && _this->selectedDemodID != 2) {
+        if (ImGui::RadioButton(CONCAT(_("AM##_"), _this->name), _this->selectedDemodID == 2) && _this->selectedDemodID != 2) {
             _this->selectDemodByID(RADIO_DEMOD_AM);
         }
-        if (ImGui::RadioButton(CONCAT("DSB##_", _this->name), _this->selectedDemodID == 3) && _this->selectedDemodID != 3) {
+        if (ImGui::RadioButton(CONCAT(_("DSB##_"), _this->name), _this->selectedDemodID == 3) && _this->selectedDemodID != 3) {
             _this->selectDemodByID(RADIO_DEMOD_DSB);
         }
         ImGui::NextColumn();
-        if (ImGui::RadioButton(CONCAT("USB##_", _this->name), _this->selectedDemodID == 4) && _this->selectedDemodID != 4) {
+        if (ImGui::RadioButton(CONCAT(_("USB##_"), _this->name), _this->selectedDemodID == 4) && _this->selectedDemodID != 4) {
             _this->selectDemodByID(RADIO_DEMOD_USB);
         }
-        if (ImGui::RadioButton(CONCAT("CW##_", _this->name), _this->selectedDemodID == 5) && _this->selectedDemodID != 5) {
+        if (ImGui::RadioButton(CONCAT(_("CW##_"), _this->name), _this->selectedDemodID == 5) && _this->selectedDemodID != 5) {
             _this->selectDemodByID(RADIO_DEMOD_CW);
         };
         ImGui::NextColumn();
-        if (ImGui::RadioButton(CONCAT("LSB##_", _this->name), _this->selectedDemodID == 6) && _this->selectedDemodID != 6) {
+        if (ImGui::RadioButton(CONCAT(_("LSB##_"), _this->name), _this->selectedDemodID == 6) && _this->selectedDemodID != 6) {
             _this->selectDemodByID(RADIO_DEMOD_LSB);
         }
-        if (ImGui::RadioButton(CONCAT("RAW##_", _this->name), _this->selectedDemodID == 7) && _this->selectedDemodID != 7) {
+        if (ImGui::RadioButton(CONCAT(_("RAW##_"), _this->name), _this->selectedDemodID == 7) && _this->selectedDemodID != 7) {
             _this->selectDemodByID(RADIO_DEMOD_RAW);
         };
         ImGui::Columns(1, CONCAT("EndRadioModeColumns##_", _this->name), false);
@@ -220,7 +227,7 @@ private:
         ImGui::EndGroup();
 
         if (!_this->bandwidthLocked) {
-            ImGui::LeftLabel("Bandwidth");
+            ImGui::LeftLabel(_("Bandwidth"));
             ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
             if (ImGui::InputFloat(("##_radio_bw_" + _this->name).c_str(), &_this->bandwidth, 1, 100, "%.0f")) {
                 _this->bandwidth = std::clamp<float>(_this->bandwidth, _this->minBandwidth, _this->maxBandwidth);
@@ -229,7 +236,7 @@ private:
         }
 
         // VFO snap interval
-        ImGui::LeftLabel("Snap Interval");
+        ImGui::LeftLabel(_("Snap Interval"));
         ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
         if (ImGui::InputInt(("##_radio_snap_" + _this->name).c_str(), &_this->snapInterval, 1, 100)) {
             if (_this->snapInterval < 1) { _this->snapInterval = 1; }
@@ -241,7 +248,7 @@ private:
 
         // Deemphasis mode
         if (_this->deempAllowed) {
-            ImGui::LeftLabel("De-emphasis");
+            ImGui::LeftLabel(_("De-emphasis"));
             ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
             if (ImGui::Combo(("##_radio_wfm_deemp_" + _this->name).c_str(), &_this->deempId, _this->deempModes.txt)) {
                 _this->setDeemphasisMode(_this->deempModes[_this->deempId]);
@@ -250,13 +257,13 @@ private:
 
         // Noise blanker
         if (_this->nbAllowed) {
-            if (ImGui::Checkbox(("Noise blanker (W.I.P.)##_radio_nb_ena_" + _this->name).c_str(), &_this->nbEnabled)) {
+            if (ImGui::Checkbox((std::string(_("Noise blanker (W.I.P.)##_radio_nb_ena_")) + _this->name).c_str(), &_this->nbEnabled)) {
                 _this->setNBEnabled(_this->nbEnabled);
             }
             if (ImGui::IsItemHovered()) {
-                ImGui::SetTooltip("Reduces impulse noise and interference\n"
+                ImGui::SetTooltip(_("Reduces impulse noise and interference\n"
                                  "Useful for suppressing power line noise, ignition noise\n"
-                                 "Higher values = more aggressive noise blanking");
+                                 "Higher values = more aggressive noise blanking"));
             }
             
             // Use RAII guard for NB controls
@@ -272,13 +279,13 @@ private:
         
 
         // Squelch
-        if (ImGui::Checkbox(("Squelch##_radio_sqelch_ena_" + _this->name).c_str(), &_this->squelchEnabled)) {
+        if (ImGui::Checkbox((std::string(_("Squelch##_radio_sqelch_ena_")) + _this->name).c_str(), &_this->squelchEnabled)) {
             _this->setSquelchEnabled(_this->squelchEnabled);
         }
         if (ImGui::IsItemHovered()) {
-            ImGui::SetTooltip("Mutes audio when signal is below threshold (dBFS)\n"
+            ImGui::SetTooltip(_("Mutes audio when signal is below threshold (dBFS)\n"
                              "Prevents listening to noise when no signal is present\n"
-                             "Lower values = more sensitive, higher values = less sensitive");
+                             "Lower values = more sensitive, higher values = less sensitive"));
         }
         
         // Use RAII guard for squelch controls
@@ -293,7 +300,7 @@ private:
 
         // FM IF Noise Reduction
         if (_this->FMIFNRAllowed) {
-            if (ImGui::Checkbox(("IF Noise Reduction##_radio_fmifnr_ena_" + _this->name).c_str(), &_this->FMIFNREnabled)) {
+            if (ImGui::Checkbox((std::string(_("IF Noise Reduction##_radio_fmifnr_ena_")) + _this->name).c_str(), &_this->FMIFNREnabled)) {
                 _this->setFMIFNREnabled(_this->FMIFNREnabled);
             }
             

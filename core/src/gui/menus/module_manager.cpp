@@ -4,6 +4,7 @@
 #include <string.h>
 #include <gui/style.h>
 #include <gui/dialogs/dialog_box.h>
+#include <gui/i18n_core.h>
 
 namespace module_manager_menu {
     char modName[1024];
@@ -40,8 +41,8 @@ namespace module_manager_menu {
         ImVec2 textOff = ImVec2(3.0f * style::uiScale, -5.0f * style::uiScale);
 
         if (ImGui::BeginTable("Module Manager Table", 3, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg | ImGuiTableFlags_ScrollY, ImVec2(0, 200.0f * style::uiScale))) {
-            ImGui::TableSetupColumn("Name");
-            ImGui::TableSetupColumn("Type");
+            ImGui::TableSetupColumn(_("Name"));
+            ImGui::TableSetupColumn(_("Type"));
             ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, cellWidth);
             ImGui::TableSetupScrollFreeze(3, 1);
             ImGui::TableHeadersRow();
@@ -68,21 +69,21 @@ namespace module_manager_menu {
             ImGui::EndTable();
         }
 
-        if (ImGui::GenericDialog("module_mgr_confirm_", confirmOpened, GENERIC_DIALOG_BUTTONS_YES_NO, []() {
-                ImGui::Text("Deleting \"%s\". Are you sure?", toBeRemoved.c_str());
+        if (ImGui::GenericDialog("module_mgr_confirm_", confirmOpened, GENERIC_DIALOG_BUTTONS_YES_NO.c_str(), []() {
+                ImGui::Text(_("Deleting \"%s\". Are you sure?"), toBeRemoved.c_str());
             }) == GENERIC_DIALOG_BUTTON_YES) {
             core::moduleManager.deleteInstance(toBeRemoved);
             modified = true;
         }
 
-        ImGui::GenericDialog("module_mgr_error_", errorOpen, GENERIC_DIALOG_BUTTONS_OK, []() {
+        ImGui::GenericDialog("module_mgr_error_", errorOpen, GENERIC_DIALOG_BUTTONS_OK.c_str(), []() {
             ImGui::TextUnformatted(errorMessage.c_str());
         });
 
         // Add module row with slightly different settings
         if (ImGui::BeginTable("Module Manager Add Table", 3)) {
-            ImGui::TableSetupColumn("Name");
-            ImGui::TableSetupColumn("Type");
+            ImGui::TableSetupColumn(_("Name"));
+            ImGui::TableSetupColumn(_("Type"));
             ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, cellWidth + cellpad.x);
             
             ImGui::TableNextRow();
@@ -103,7 +104,7 @@ namespace module_manager_menu {
                     modified = true;
                 }
                 else {
-                    errorMessage = "Could not create new instance of " + modTypes[modTypeId];
+                    errorMessage = std::string(_("Could not create new instance of ")) + modTypes[modTypeId];
                     errorOpen = true;
                 }
             }
