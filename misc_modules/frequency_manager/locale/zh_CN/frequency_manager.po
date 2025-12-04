@@ -1,0 +1,463 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-05 07:02+0800\n"
+"PO-Revision-Date: 2025-12-05 07:19+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "NFM"
+msgstr "窄带调频"
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "WFM"
+msgstr "宽带调频"
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "AM"
+msgstr "调幅"
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "DSB"
+msgstr "双边带"
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "USB"
+msgstr "上边带"
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "CW"
+msgstr "等幅电报"
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "LSB"
+msgstr "下边带"
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "RAW"
+msgstr "原始输出"
+
+#: misc_modules/frequency_manager/src/main.cpp:290
+msgid "Off"
+msgstr "关"
+
+#: misc_modules/frequency_manager/src/main.cpp:290
+msgid "Top"
+msgstr "顶部"
+
+#: misc_modules/frequency_manager/src/main.cpp:290
+msgid "Bottom"
+msgstr "底部"
+
+#: misc_modules/frequency_manager/src/main.cpp:315
+msgid "FrequencyManager"
+msgstr "频率管理"
+
+#: misc_modules/frequency_manager/src/main.cpp:510
+msgid "Edit##freq_manager_edit_popup_"
+msgstr "编辑##freq_manager_edit_popup_"
+
+#: misc_modules/frequency_manager/src/main.cpp:522
+#: misc_modules/frequency_manager/src/main.cpp:841
+#: misc_modules/frequency_manager/src/main.cpp:1193
+msgid "Name"
+msgstr "名称"
+
+#: misc_modules/frequency_manager/src/main.cpp:532
+#: misc_modules/frequency_manager/src/main.cpp:1190
+msgid "Type"
+msgstr "类型"
+
+#: misc_modules/frequency_manager/src/main.cpp:535
+#: misc_modules/frequency_manager/src/main.cpp:651
+msgid "Frequency"
+msgstr "频率"
+
+#: misc_modules/frequency_manager/src/main.cpp:535
+#: misc_modules/frequency_manager/src/main.cpp:1215
+msgid "Band"
+msgstr "波段"
+
+#: misc_modules/frequency_manager/src/main.cpp:551
+msgid "Start Freq"
+msgstr "起始频率"
+
+#: misc_modules/frequency_manager/src/main.cpp:558
+msgid "End Freq"
+msgstr "结束频率"
+
+#: misc_modules/frequency_manager/src/main.cpp:565
+msgid "Step"
+msgstr "步进"
+
+#: misc_modules/frequency_manager/src/main.cpp:568
+#, c-format
+msgid ""
+"Frequency step size for band scanning (Hz)\n"
+"Creates major scan points: Start -> Start+Step -> Start+2*Step -> End\n"
+"\n"
+"CRITICAL REQUIREMENT:\n"
+"Step frequency MUST be <= band width (%.1f kHz)\n"
+"Otherwise scanner will skip the entire band!\n"
+"\n"
+"EFFICIENT TWO-TIER SCANNING:\n"
+"1. HARDWARE TUNING: Radio tunes to each step (108.0, 109.0 MHz)\n"
+"   Captures FFT spectrum data across radio bandwidth\n"
+"2. FFT ANALYSIS: Uses Scanner Interval for digital analysis\n"
+"   Checks 108.005, 108.010... in captured data (NO retuning!)\n"
+"\n"
+"WHY YOUR 1000kHz + 5kHz WORKS PERFECTLY:\n"
+"- Step = Hardware tuning (slow, but only every 1000kHz)\n"
+"- Scanner Interval = Digital FFT analysis (fast, every 5kHz)\n"
+"- Result = Fast major hops + thorough spectral coverage\n"
+"- Radio bandwidth limits effective interval range per step\n"
+"\n"
+"RECOMMENDED STEP SIZES:\n"
+"- 100-1000 kHz: Optimal for wide band scanning with intervals\n"
+"- 25-100 kHz: Balanced for mixed scanning types\n"
+"- 5-25 kHz: Maximum precision, hardware-limited speed\n"
+"\n"
+"TIP: Larger steps work great with small intervals (FFT magic!)"
+msgstr ""
+"频段扫描步进值 (Hz)\n"
+"创建主要扫描点：起始频率 → 起始+步进 → 起始+2*步进 → 终止频率\n"
+"\n"
+"关键要求:\n"
+"步进频率必须 ≤ 频段宽度 (%.1f kHz)\n"
+"否则扫描器将跳过整个频段!\n"
+"\n"
+"高效两级扫描机制:\n"
+"1. 硬件调谐：接收机按步进调谐 (108.0、109.0 MHz)\n"
+"   捕获接收机带宽内的 FFT 频谱数据\n"
+"2. FFT 分析：使用扫描间隔进行数字分析\n"
+"   在已捕获数据中检查 108.005、108.010... (无需重新调谐!)\n"
+"\n"
+"为何您的 \"1000kHz + 5kHz\" 组合效果完美:\n"
+"- 步进值 = 硬件调谐 （速度慢，但仅每1000kHz执行一次）\n"
+"- 扫描间隔 = 数字FFT分析（速度快，每5kHz执行一次）\n"
+"- 结果 = 快速的大跨度跳频 + 完整的频谱覆盖\n"
+"- 接收机带宽限制了每步进的有效间隔范围\n"
+"\n"
+"推荐步进值范围:\n"
+"- 100-1000 kHz：适合配合间隔进行宽频段扫描\n"
+"- 25-100 kHz：混合扫描类型的平衡选择\n"
+"- 5-25 kHz：最高精度，受硬件限制的速度\n"
+"\n"
+"提示：大步进值配合小间隔效果极佳（FFT的魔力！）"
+
+#: misc_modules/frequency_manager/src/main.cpp:615
+#, c-format
+msgid "Max: %.1f MHz (Band: %.1f, SDR: %.1f)"
+msgstr "最大值: %.1f MHz (频段限制: %.1f, SDR限制: %.1f)"
+
+#: misc_modules/frequency_manager/src/main.cpp:620
+#, c-format
+msgid ""
+"Step frequency is limited by:\n"
+"- Band bandwidth: %.1f MHz\n"
+"- SDR hardware bandwidth: %.1f MHz\n"
+"\n"
+"Maximum allowed step: %.1f MHz\n"
+"Current step: %.1f MHz\n"
+"\n"
+"%s"
+msgstr ""
+"步进频率受限于:\n"
+"- 频段带宽：%.1f MHz\n"
+"- SDR硬件带宽：%.1f MHz\n"
+"\n"
+"允许的最大步进值：%.1f MHz\n"
+"当前步进值：%.1f MHz\n"
+"\n"
+"%s"
+
+#: misc_modules/frequency_manager/src/main.cpp:639
+msgid "Notes"
+msgstr "备注"
+
+#: misc_modules/frequency_manager/src/main.cpp:658
+msgid "Bandwidth"
+msgstr "带宽"
+
+#: misc_modules/frequency_manager/src/main.cpp:665
+#: misc_modules/frequency_manager/src/main.cpp:737
+msgid "Mode"
+msgstr "模式"
+
+#: misc_modules/frequency_manager/src/main.cpp:677
+msgid "Scanner Integration"
+msgstr "扫描仪集成"
+
+#: misc_modules/frequency_manager/src/main.cpp:679
+msgid "Include in Scanner"
+msgstr "纳入扫描范围"
+
+#: misc_modules/frequency_manager/src/main.cpp:683
+msgid "When enabled, this entry will be included in scanner frequency list"
+msgstr "启用后，此项将被纳入扫描频率列表中"
+
+#: misc_modules/frequency_manager/src/main.cpp:690
+msgid "Tuning Profile"
+msgstr "调谐配置"
+
+#: misc_modules/frequency_manager/src/main.cpp:695
+msgid "Enable Tuning Profile"
+msgstr "启用调谐配置"
+
+#: misc_modules/frequency_manager/src/main.cpp:721
+msgid "Profile Name"
+msgstr "配置名称"
+
+#: misc_modules/frequency_manager/src/main.cpp:729
+msgid "Auto-Name"
+msgstr "自动命名"
+
+#: misc_modules/frequency_manager/src/main.cpp:743
+msgid "Bandwidth (Hz)"
+msgstr "带宽 (Hz)"
+
+#: misc_modules/frequency_manager/src/main.cpp:750
+msgid "Squelch Enabled"
+msgstr "启用静噪"
+
+#: misc_modules/frequency_manager/src/main.cpp:756
+msgid "Squelch Level (dB)"
+msgstr "静噪等级 (dB)"
+
+#: misc_modules/frequency_manager/src/main.cpp:764
+msgid "Advanced Settings"
+msgstr "高级设置"
+
+#: misc_modules/frequency_manager/src/main.cpp:767
+msgid "RF Gain (dB)"
+msgstr "射频增益 (dB)"
+
+#: misc_modules/frequency_manager/src/main.cpp:773
+msgid "AGC Enabled"
+msgstr "启用 AGC"
+
+#: misc_modules/frequency_manager/src/main.cpp:778
+msgid "Center Offset (Hz)"
+msgstr "中心偏移量 (Hz)"
+
+#: misc_modules/frequency_manager/src/main.cpp:794
+msgid "Invalid configuration!"
+msgstr "无效的配置!"
+
+#: misc_modules/frequency_manager/src/main.cpp:799
+msgid "Invalid profile settings!"
+msgstr "无效的配置设置!"
+
+#: misc_modules/frequency_manager/src/main.cpp:806
+#: misc_modules/frequency_manager/src/main.cpp:850
+msgid "Apply"
+msgstr "应用"
+
+#: misc_modules/frequency_manager/src/main.cpp:820
+#: misc_modules/frequency_manager/src/main.cpp:869
+msgid "Cancel"
+msgstr "取消"
+
+#: misc_modules/frequency_manager/src/main.cpp:834
+msgid "New##freq_manager_new_popup_"
+msgstr "新建##freq_manager_new_popup_"
+
+#: misc_modules/frequency_manager/src/main.cpp:882
+msgid "Select lists##freq_manager_sel_popup_"
+msgstr "选择列表##freq_manager_sel_popup_"
+
+#: misc_modules/frequency_manager/src/main.cpp:899
+msgid "Ok"
+msgstr "是"
+
+#: misc_modules/frequency_manager/src/main.cpp:1006
+msgid "Rename"
+msgstr "重命名"
+
+#: misc_modules/frequency_manager/src/main.cpp:1016
+msgid "Rename##_freq_mgr_ren_lst_"
+msgstr "重命名##_freq_mgr_ren_lst_"
+
+#: misc_modules/frequency_manager/src/main.cpp:1025
+#: misc_modules/frequency_manager/src/main.cpp:1026
+msgid "New List"
+msgstr "新增列表"
+
+#: misc_modules/frequency_manager/src/main.cpp:1031
+#, c-format
+msgid "New List (%d)"
+msgstr "新增列表 (%d)"
+
+#: misc_modules/frequency_manager/src/main.cpp:1047
+#, c-format
+msgid "Deleting list named \"%s\". Are you sure?"
+msgstr "正在删除名为“%s”的列表。确定要继续吗？"
+
+#: misc_modules/frequency_manager/src/main.cpp:1069
+msgid "Add##_freq_mgr_add_"
+msgstr "新增##_freq_mgr_add_"
+
+#: misc_modules/frequency_manager/src/main.cpp:1096
+#: misc_modules/frequency_manager/src/main.cpp:1097
+msgid "New Bookmark"
+msgstr "新建书签"
+
+#: misc_modules/frequency_manager/src/main.cpp:1102
+#, c-format
+msgid "New Bookmark (%d)"
+msgstr "新建书签 (%d)"
+
+#: misc_modules/frequency_manager/src/main.cpp:1114
+msgid "Add Band##_freq_mgr_add_band_"
+msgstr "新增波段##_freq_mgr_add_band_"
+
+#: misc_modules/frequency_manager/src/main.cpp:1133
+#: misc_modules/frequency_manager/src/main.cpp:1134
+msgid "New Band"
+msgstr "新增波段"
+
+#: misc_modules/frequency_manager/src/main.cpp:1139
+#, c-format
+msgid "New Band (%d)"
+msgstr "新增波段 (%d)"
+
+#: misc_modules/frequency_manager/src/main.cpp:1152
+msgid "Remove##_freq_mgr_rem_"
+msgstr "删除##_freq_mgr_rem_"
+
+#: misc_modules/frequency_manager/src/main.cpp:1158
+msgid "Edit##_freq_mgr_edt_"
+msgstr "编辑##_freq_mgr_edt_"
+
+#: misc_modules/frequency_manager/src/main.cpp:1181
+msgid "Deleting selected bookmaks. Are you sure?"
+msgstr "正在删除选中的书签。确定要继续吗？"
+
+#: misc_modules/frequency_manager/src/main.cpp:1194
+msgid "Details"
+msgstr "详情"
+
+#: misc_modules/frequency_manager/src/main.cpp:1201
+msgid "Frequency Manager Controls:"
+msgstr "频率管理器控制:"
+
+#: misc_modules/frequency_manager/src/main.cpp:1203
+msgid "- Single-click: Select entry"
+msgstr "- 单击：选择条目"
+
+#: misc_modules/frequency_manager/src/main.cpp:1204
+msgid "- Double-click: Apply entry (tune to frequency)"
+msgstr "- 双击：应用条目（调谐至对应频率）"
+
+#: misc_modules/frequency_manager/src/main.cpp:1205
+msgid "- Right-click: Edit entry"
+msgstr "- 右键单击：编辑条目"
+
+#: misc_modules/frequency_manager/src/main.cpp:1206
+msgid "- Edit button: Edit selected entry"
+msgstr "- 编辑按钮：编辑选中条目"
+
+#: misc_modules/frequency_manager/src/main.cpp:1217
+msgid "Freq"
+msgstr "频率"
+
+#: misc_modules/frequency_manager/src/main.cpp:1227
+#, c-format
+msgid "Profile: %s"
+msgstr "配置: %s"
+
+#: misc_modules/frequency_manager/src/main.cpp:1228
+#: misc_modules/frequency_manager/src/main.cpp:1540
+#, c-format
+msgid "Mode: %s"
+msgstr "模式: %s"
+
+#: misc_modules/frequency_manager/src/main.cpp:1229
+#, c-format
+msgid "Bandwidth: %.1f kHz"
+msgstr "带宽: %.1f kHz"
+
+#: misc_modules/frequency_manager/src/main.cpp:1231
+#, c-format
+msgid "Squelch: %.1f dB"
+msgstr "静噪等级: %.1f dB"
+
+#: misc_modules/frequency_manager/src/main.cpp:1248
+#, c-format
+msgid ""
+"Include this entry in scanner frequency list\n"
+"%s"
+msgstr ""
+"将此条目纳入扫描频率列表\n"
+"%s"
+
+#: misc_modules/frequency_manager/src/main.cpp:1302
+#, c-format
+msgid "%.3f-%.3f MHz (%.0f kHz, %.1f MHz span)"
+msgstr "%.3f-%.3f MHz (%.0f kHz, 频宽 %.1f MHz)"
+
+#: misc_modules/frequency_manager/src/main.cpp:1315
+msgid "Apply##_freq_mgr_apply_"
+msgstr "应用##_freq_mgr_apply_"
+
+#: misc_modules/frequency_manager/src/main.cpp:1327
+msgid "Import##_freq_mgr_imp_"
+msgstr "导入##_freq_mgr_imp_"
+
+#: misc_modules/frequency_manager/src/main.cpp:1329
+msgid "Import bookmarks"
+msgstr "导入书签"
+
+#: misc_modules/frequency_manager/src/main.cpp:1329
+#: misc_modules/frequency_manager/src/main.cpp:1342
+msgid "JSON Files (*.json)"
+msgstr "JSON 文件 (*.json)"
+
+#: misc_modules/frequency_manager/src/main.cpp:1329
+#: misc_modules/frequency_manager/src/main.cpp:1342
+msgid "All Files"
+msgstr "全部文件"
+
+#: misc_modules/frequency_manager/src/main.cpp:1334
+msgid "Export##_freq_mgr_exp_"
+msgstr "导出##_freq_mgr_exp_"
+
+#: misc_modules/frequency_manager/src/main.cpp:1342
+msgid "Export bookmarks"
+msgstr "导出书签"
+
+#: misc_modules/frequency_manager/src/main.cpp:1347
+msgid "Select displayed lists##_freq_mgr_exp_"
+msgstr "选择显示的列表##_freq_mgr_exp_"
+
+#: misc_modules/frequency_manager/src/main.cpp:1351
+msgid "Bookmark display mode"
+msgstr "书签显示模式"
+
+#: misc_modules/frequency_manager/src/main.cpp:1537
+#, c-format
+msgid "List: %s"
+msgstr "列表: %s"
+
+#: misc_modules/frequency_manager/src/main.cpp:1538
+#, c-format
+msgid "Frequency: %s"
+msgstr "频率: %s"
+
+#: misc_modules/frequency_manager/src/main.cpp:1539
+#, c-format
+msgid "Bandwidth: %s"
+msgstr "带宽: %s"

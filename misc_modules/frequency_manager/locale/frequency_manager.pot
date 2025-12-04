@@ -1,0 +1,427 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-05 07:02+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "NFM"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "WFM"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "AM"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "DSB"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "USB"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "CW"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "LSB"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:281
+msgid "RAW"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:290
+msgid "Off"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:290
+msgid "Top"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:290
+msgid "Bottom"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:315
+msgid "FrequencyManager"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:510
+msgid "Edit##freq_manager_edit_popup_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:522
+#: misc_modules/frequency_manager/src/main.cpp:841
+#: misc_modules/frequency_manager/src/main.cpp:1193
+msgid "Name"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:532
+#: misc_modules/frequency_manager/src/main.cpp:1190
+msgid "Type"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:535
+#: misc_modules/frequency_manager/src/main.cpp:651
+msgid "Frequency"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:535
+#: misc_modules/frequency_manager/src/main.cpp:1215
+msgid "Band"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:551
+msgid "Start Freq"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:558
+msgid "End Freq"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:565
+msgid "Step"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:568
+#, c-format
+msgid ""
+"Frequency step size for band scanning (Hz)\n"
+"Creates major scan points: Start -> Start+Step -> Start+2*Step -> End\n"
+"\n"
+"CRITICAL REQUIREMENT:\n"
+"Step frequency MUST be <= band width (%.1f kHz)\n"
+"Otherwise scanner will skip the entire band!\n"
+"\n"
+"EFFICIENT TWO-TIER SCANNING:\n"
+"1. HARDWARE TUNING: Radio tunes to each step (108.0, 109.0 MHz)\n"
+"   Captures FFT spectrum data across radio bandwidth\n"
+"2. FFT ANALYSIS: Uses Scanner Interval for digital analysis\n"
+"   Checks 108.005, 108.010... in captured data (NO retuning!)\n"
+"\n"
+"WHY YOUR 1000kHz + 5kHz WORKS PERFECTLY:\n"
+"- Step = Hardware tuning (slow, but only every 1000kHz)\n"
+"- Scanner Interval = Digital FFT analysis (fast, every 5kHz)\n"
+"- Result = Fast major hops + thorough spectral coverage\n"
+"- Radio bandwidth limits effective interval range per step\n"
+"\n"
+"RECOMMENDED STEP SIZES:\n"
+"- 100-1000 kHz: Optimal for wide band scanning with intervals\n"
+"- 25-100 kHz: Balanced for mixed scanning types\n"
+"- 5-25 kHz: Maximum precision, hardware-limited speed\n"
+"\n"
+"TIP: Larger steps work great with small intervals (FFT magic!)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:615
+#, c-format
+msgid "Max: %.1f MHz (Band: %.1f, SDR: %.1f)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:620
+#, c-format
+msgid ""
+"Step frequency is limited by:\n"
+"- Band bandwidth: %.1f MHz\n"
+"- SDR hardware bandwidth: %.1f MHz\n"
+"\n"
+"Maximum allowed step: %.1f MHz\n"
+"Current step: %.1f MHz\n"
+"\n"
+"%s"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:639
+msgid "Notes"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:658
+msgid "Bandwidth"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:665
+#: misc_modules/frequency_manager/src/main.cpp:737
+msgid "Mode"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:677
+msgid "Scanner Integration"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:679
+msgid "Include in Scanner"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:683
+msgid "When enabled, this entry will be included in scanner frequency list"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:690
+msgid "Tuning Profile"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:695
+msgid "Enable Tuning Profile"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:721
+msgid "Profile Name"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:729
+msgid "Auto-Name"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:743
+msgid "Bandwidth (Hz)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:750
+msgid "Squelch Enabled"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:756
+msgid "Squelch Level (dB)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:764
+msgid "Advanced Settings"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:767
+msgid "RF Gain (dB)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:773
+msgid "AGC Enabled"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:778
+msgid "Center Offset (Hz)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:794
+msgid "Invalid configuration!"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:799
+msgid "Invalid profile settings!"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:806
+#: misc_modules/frequency_manager/src/main.cpp:850
+msgid "Apply"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:820
+#: misc_modules/frequency_manager/src/main.cpp:869
+msgid "Cancel"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:834
+msgid "New##freq_manager_new_popup_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:882
+msgid "Select lists##freq_manager_sel_popup_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:899
+msgid "Ok"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1006
+msgid "Rename"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1016
+msgid "Rename##_freq_mgr_ren_lst_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1025
+#: misc_modules/frequency_manager/src/main.cpp:1026
+msgid "New List"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1031
+#, c-format
+msgid "New List (%d)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1047
+#, c-format
+msgid "Deleting list named \"%s\". Are you sure?"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1069
+msgid "Add##_freq_mgr_add_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1096
+#: misc_modules/frequency_manager/src/main.cpp:1097
+msgid "New Bookmark"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1102
+#, c-format
+msgid "New Bookmark (%d)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1114
+msgid "Add Band##_freq_mgr_add_band_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1133
+#: misc_modules/frequency_manager/src/main.cpp:1134
+msgid "New Band"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1139
+#, c-format
+msgid "New Band (%d)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1152
+msgid "Remove##_freq_mgr_rem_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1158
+msgid "Edit##_freq_mgr_edt_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1181
+msgid "Deleting selected bookmaks. Are you sure?"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1194
+msgid "Details"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1201
+msgid "Frequency Manager Controls:"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1203
+msgid "- Single-click: Select entry"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1204
+msgid "- Double-click: Apply entry (tune to frequency)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1205
+msgid "- Right-click: Edit entry"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1206
+msgid "- Edit button: Edit selected entry"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1217
+msgid "Freq"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1227
+#, c-format
+msgid "Profile: %s"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1228
+#: misc_modules/frequency_manager/src/main.cpp:1540
+#, c-format
+msgid "Mode: %s"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1229
+#, c-format
+msgid "Bandwidth: %.1f kHz"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1231
+#, c-format
+msgid "Squelch: %.1f dB"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1248
+#, c-format
+msgid ""
+"Include this entry in scanner frequency list\n"
+"%s"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1302
+#, c-format
+msgid "%.3f-%.3f MHz (%.0f kHz, %.1f MHz span)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1315
+msgid "Apply##_freq_mgr_apply_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1327
+msgid "Import##_freq_mgr_imp_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1329
+msgid "Import bookmarks"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1329
+#: misc_modules/frequency_manager/src/main.cpp:1342
+msgid "JSON Files (*.json)"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1329
+#: misc_modules/frequency_manager/src/main.cpp:1342
+msgid "All Files"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1334
+msgid "Export##_freq_mgr_exp_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1342
+msgid "Export bookmarks"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1347
+msgid "Select displayed lists##_freq_mgr_exp_"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1351
+msgid "Bookmark display mode"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1537
+#, c-format
+msgid "List: %s"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1538
+#, c-format
+msgid "Frequency: %s"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1539
+#, c-format
+msgid "Bandwidth: %s"
+msgstr ""

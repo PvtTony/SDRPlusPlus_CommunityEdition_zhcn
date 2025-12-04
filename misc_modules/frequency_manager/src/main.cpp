@@ -20,6 +20,10 @@
 #include <mutex>
 #include <algorithm>
 
+#include <libintl.h>
+#define MODULE_DOMAIN "frequency_manager"
+#define _(STR) dgettext(MODULE_DOMAIN, STR)
+
 SDRPP_MOD_INFO{
     /* Name:            */ "frequency_manager",
     /* Description:     */ "Frequency manager module for SDR++",
@@ -274,7 +278,7 @@ const char* demodModeList[] = {
     "RAW"
 };
 
-const char* demodModeListTxt = "NFM\0WFM\0AM\0DSB\0USB\0CW\0LSB\0RAW\0";
+const char* demodModeListTxt = (std::string(_("NFM")) + '\0' + _("WFM") + '\0' + _("AM") + '\0' + _("DSB") + '\0' + _("USB") + '\0' + _("CW") + '\0' + _("LSB") + '\0' + _("RAW") + '\0').c_str();
 
 enum {
     BOOKMARK_DISP_MODE_OFF,
@@ -283,12 +287,16 @@ enum {
     _BOOKMARK_DISP_MODE_COUNT
 };
 
-const char* bookmarkDisplayModesTxt = "Off\0Top\0Bottom\0";
+const char* bookmarkDisplayModesTxt = (std::string(_("Off")) + '\0' + _("Top") + '\0' + _("Bottom") + '\0').c_str();
 
 class FrequencyManagerModule : public ModuleManager::Instance {
 public:
     FrequencyManagerModule(std::string name) {
         this->name = name;
+
+        // Initialize gettext domain
+        bindtextdomain(MODULE_DOMAIN, "./locale");
+        bind_textdomain_codeset(MODULE_DOMAIN, "UTF-8");
 
         config.acquire();
         std::string selList = config.conf["selectedList"];
@@ -304,7 +312,7 @@ public:
         inputHandler.ctx = this;
         inputHandler.handler = fftInput;
 
-        gui::menu.registerEntry(name, menuHandler, this, NULL);
+        gui::menu.registerEntry(_("FrequencyManager"), menuHandler, this, NULL);
         gui::waterfall.onFFTRedraw.bindHandler(&fftRedrawHandler);
         gui::waterfall.onInputProcess.bindHandler(&inputHandler);
         
@@ -499,7 +507,7 @@ private:
         bool open = true;
         gui::mainWindow.lockWaterfallControls = true;
 
-        std::string id = "Edit##freq_manager_edit_popup_" + name;
+        std::string id = _("Edit##freq_manager_edit_popup_") + name;
         ImGui::OpenPopup(id.c_str());
 
         char nameBuf[1024];
@@ -511,7 +519,7 @@ private:
             // Name field
             ImGui::TableNextRow();
             ImGui::TableSetColumnIndex(0);
-            ImGui::LeftLabel("Name");
+            ImGui::LeftLabel(_("Name"));
             ImGui::TableSetColumnIndex(1);
             ImGui::SetNextItemWidth(200);
             if (ImGui::InputText(("##freq_manager_edit_name" + name).c_str(), nameBuf, 1023)) {
@@ -521,10 +529,10 @@ private:
             // Type selector (Frequency vs Band)
             ImGui::TableNextRow();
             ImGui::TableSetColumnIndex(0);
-            ImGui::LeftLabel("Type");
+            ImGui::LeftLabel(_("Type"));
             ImGui::TableSetColumnIndex(1);
             ImGui::SetNextItemWidth(200);
-            const char* typeOptions = "Frequency\0Band\0";
+            const char* typeOptions = (std::string(_("Frequency")) + '\0' + _("Band") + '\0').c_str();
             int typeIndex = editedBookmark.isBand ? 1 : 0;
             if (ImGui::Combo(("##freq_manager_edit_type" + name).c_str(), &typeIndex, typeOptions)) {
                 editedBookmark.isBand = (typeIndex == 1);
@@ -540,24 +548,24 @@ private:
                 // Band-specific fields
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
-                ImGui::LeftLabel("Start Freq");
+                ImGui::LeftLabel(_("Start Freq"));
                 ImGui::TableSetColumnIndex(1);
                 ImGui::SetNextItemWidth(200);
                 ImGui::InputDouble(("##freq_manager_edit_start" + name).c_str(), &editedBookmark.startFreq);
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
-                ImGui::LeftLabel("End Freq");
+                ImGui::LeftLabel(_("End Freq"));
                 ImGui::TableSetColumnIndex(1);
                 ImGui::SetNextItemWidth(200);
                 ImGui::InputDouble(("##freq_manager_edit_end" + name).c_str(), &editedBookmark.endFreq);
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
-                ImGui::LeftLabel("Step");
+                ImGui::LeftLabel(_("Step"));
                 if (ImGui::IsItemHovered()) {
                     double bandwidth = editedBookmark.endFreq - editedBookmark.startFreq;
-                    ImGui::SetTooltip("Frequency step size for band scanning (Hz)\n"
+                    ImGui::SetTooltip(_("Frequency step size for band scanning (Hz)\n"
                                      "Creates major scan points: Start -> Start+Step -> Start+2*Step -> End\n"
                                      "\n"
                                      "CRITICAL REQUIREMENT:\n"
@@ -581,7 +589,7 @@ private:
                                      "- 25-100 kHz: Balanced for mixed scanning types\n"
                                      "- 5-25 kHz: Maximum precision, hardware-limited speed\n"
                                      "\n"
-                                     "TIP: Larger steps work great with small intervals (FFT magic!)",
+                                     "TIP: Larger steps work great with small intervals (FFT magic!)"),
                                      bandwidth / 1e3);
                 }
                 ImGui::TableSetColumnIndex(1);
@@ -604,12 +612,12 @@ private:
                 }
                 
                 ImGui::PushStyleColor(ImGuiCol_Text, textColor);
-                ImGui::Text("Max: %.1f MHz (Band: %.1f, SDR: %.1f)", 
+                ImGui::Text(_("Max: %.1f MHz (Band: %.1f, SDR: %.1f)"), 
                           maxAllowedStep / 1e6, bandBandwidth / 1e6, sdrBandwidth / 1e6);
                 ImGui::PopStyleColor();
                 
                 if (ImGui::IsItemHovered()) {
-                    ImGui::SetTooltip("Step frequency is limited by:\n"
+                    ImGui::SetTooltip(_("Step frequency is limited by:\n"
                                      "- Band bandwidth: %.1f MHz\n"
                                      "- SDR hardware bandwidth: %.1f MHz\n"
                                      "\n"
@@ -621,14 +629,14 @@ private:
                                      maxAllowedStep / 1e6, editedBookmark.stepFreq / 1e6,
                                      editedBookmark.stepFreq > maxAllowedStep ? 
                                      "WARNING: Step exceeds limits!" : 
-                                     "Step frequency is within valid range.");
+                                     "Step frequency is within valid range."));
                 }
                 
 
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
-                ImGui::LeftLabel("Notes");
+                ImGui::LeftLabel(_("Notes"));
                 ImGui::TableSetColumnIndex(1);
                 ImGui::SetNextItemWidth(200);
                 if (ImGui::InputText(("##freq_manager_edit_notes" + name).c_str(), editedNotes, 1023)) {
@@ -640,21 +648,21 @@ private:
                 // Frequency-specific fields (original)
             ImGui::TableNextRow();
             ImGui::TableSetColumnIndex(0);
-            ImGui::LeftLabel("Frequency");
+            ImGui::LeftLabel(_("Frequency"));
             ImGui::TableSetColumnIndex(1);
             ImGui::SetNextItemWidth(200);
             ImGui::InputDouble(("##freq_manager_edit_freq" + name).c_str(), &editedBookmark.frequency);
 
             ImGui::TableNextRow();
             ImGui::TableSetColumnIndex(0);
-            ImGui::LeftLabel("Bandwidth");
+            ImGui::LeftLabel(_("Bandwidth"));
             ImGui::TableSetColumnIndex(1);
             ImGui::SetNextItemWidth(200);
             ImGui::InputDouble(("##freq_manager_edit_bw" + name).c_str(), &editedBookmark.bandwidth);
 
             ImGui::TableNextRow();
             ImGui::TableSetColumnIndex(0);
-            ImGui::LeftLabel("Mode");
+            ImGui::LeftLabel(_("Mode"));
             ImGui::TableSetColumnIndex(1);
             ImGui::SetNextItemWidth(200);
             ImGui::Combo(("##freq_manager_edit_mode" + name).c_str(), &editedBookmark.mode, demodModeListTxt);
@@ -666,25 +674,25 @@ private:
             
             // Scanner Integration section
             ImGui::Separator();
-            ImGui::Text("Scanner Integration");
+            ImGui::Text(_("Scanner Integration"));
             bool scannable = editedBookmark.scannable;
-            if (ImGui::Checkbox("Include in Scanner", &scannable)) {
+            if (ImGui::Checkbox(_("Include in Scanner"), &scannable)) {
                 editedBookmark.scannable = scannable;
             }
             if (ImGui::IsItemHovered()) {
-                ImGui::SetTooltip("When enabled, this entry will be included in scanner frequency list");
+                ImGui::SetTooltip(_("When enabled, this entry will be included in scanner frequency list"));
             }
             
             ImGui::Spacing();
             
             // Tuning Profile section
             bool hasProfile = editedBookmark.hasProfile();
-            if (ImGui::CollapsingHeader("Tuning Profile", ImGuiTreeNodeFlags_DefaultOpen)) {
+            if (ImGui::CollapsingHeader(_("Tuning Profile"), ImGuiTreeNodeFlags_DefaultOpen)) {
                 ImGui::Indent();
                 
                 // Profile enable/disable
                 bool enableProfile = hasProfile;
-                if (ImGui::Checkbox("Enable Tuning Profile", &enableProfile)) {
+                if (ImGui::Checkbox(_("Enable Tuning Profile"), &enableProfile)) {
                     if (enableProfile && !hasProfile) {
                         // Create new profile with current radio settings
                         TuningProfile newProfile;
@@ -710,7 +718,7 @@ private:
                     ImGui::Spacing();
                     
                     // Profile name
-                    ImGui::LeftLabel("Profile Name");
+                    ImGui::LeftLabel(_("Profile Name"));
                     ImGui::SetNextItemWidth(200);
                     if (ImGui::InputText(("##profile_name" + name).c_str(), editedProfileName, sizeof(editedProfileName))) {
                         editedProfile.name = editedProfileName;
@@ -718,7 +726,7 @@ private:
                     }
                     
                     ImGui::SameLine();
-                    if (ImGui::Button("Auto-Name")) {
+                    if (ImGui::Button(_("Auto-Name"))) {
                         std::string autoName = editedProfile.generateAutoName();
                         strcpy(editedProfileName, autoName.c_str());
                         editedProfile.name = autoName;
@@ -726,26 +734,26 @@ private:
                     }
                     
                     // Basic settings
-                    ImGui::LeftLabel("Mode");
+                    ImGui::LeftLabel(_("Mode"));
                     ImGui::SetNextItemWidth(200);
                     if (ImGui::Combo(("##profile_mode" + name).c_str(), &editedProfile.demodMode, demodModeListTxt)) {
                         editedBookmark.setProfile(editedProfile);
                     }
                     
-                    ImGui::LeftLabel("Bandwidth (Hz)");
+                    ImGui::LeftLabel(_("Bandwidth (Hz)"));
                     ImGui::SetNextItemWidth(200);
                     if (ImGui::InputFloat(("##profile_bw" + name).c_str(), &editedProfile.bandwidth, 1000.0f, 10000.0f, "%.0f")) {
                         editedProfile.bandwidth = (std::max)(1000.0f, editedProfile.bandwidth);
                         editedBookmark.setProfile(editedProfile);
                     }
                     
-                    ImGui::LeftLabel("Squelch Enabled");
+                    ImGui::LeftLabel(_("Squelch Enabled"));
                     if (ImGui::Checkbox(("##profile_squelch_en" + name).c_str(), &editedProfile.squelchEnabled)) {
                         editedBookmark.setProfile(editedProfile);
                     }
                     
                     if (editedProfile.squelchEnabled) {
-                        ImGui::LeftLabel("Squelch Level (dB)");
+                        ImGui::LeftLabel(_("Squelch Level (dB)"));
                         ImGui::SetNextItemWidth(200);
                         if (ImGui::SliderFloat(("##profile_squelch_lvl" + name).c_str(), &editedProfile.squelchLevel, -100.0f, 0.0f, "%.1f")) {
                             editedBookmark.setProfile(editedProfile);
@@ -753,21 +761,21 @@ private:
                     }
                     
                     // Advanced settings (collapsible)
-                    if (ImGui::CollapsingHeader("Advanced Settings")) {
+                    if (ImGui::CollapsingHeader(_("Advanced Settings"))) {
                         ImGui::Indent();
                         
-                        ImGui::LeftLabel("RF Gain (dB)");
+                        ImGui::LeftLabel(_("RF Gain (dB)"));
                         ImGui::SetNextItemWidth(200);
                         if (ImGui::SliderFloat(("##profile_rf_gain" + name).c_str(), &editedProfile.rfGain, 0.0f, 50.0f, "%.1f")) {
                             editedBookmark.setProfile(editedProfile);
                         }
                         
-                        ImGui::LeftLabel("AGC Enabled");
+                        ImGui::LeftLabel(_("AGC Enabled"));
                         if (ImGui::Checkbox(("##profile_agc" + name).c_str(), &editedProfile.agcEnabled)) {
                             editedBookmark.setProfile(editedProfile);
                         }
                         
-                        ImGui::LeftLabel("Center Offset (Hz)");
+                        ImGui::LeftLabel(_("Center Offset (Hz)"));
                         ImGui::SetNextItemWidth(200);
                         if (ImGui::InputDouble(("##profile_offset" + name).c_str(), &editedProfile.centerOffset, 1000.0, 10000.0, "%.0f")) {
                             editedBookmark.setProfile(editedProfile);
@@ -783,19 +791,19 @@ private:
             // Validation and status
             bool isValid = editedBookmark.isValid();
             if (!isValid) {
-                ImGui::TextColored(ImVec4(1.0f, 0.4f, 0.4f, 1.0f), "Invalid configuration!");
+                ImGui::TextColored(ImVec4(1.0f, 0.4f, 0.4f, 1.0f), _("Invalid configuration!"));
             }
             
             // Profile validation
             if (editedBookmark.hasProfile() && !editedBookmark.getProfile()->isValid()) {
-                ImGui::TextColored(ImVec4(1.0f, 0.4f, 0.4f, 1.0f), "Invalid profile settings!");
+                ImGui::TextColored(ImVec4(1.0f, 0.4f, 0.4f, 1.0f), _("Invalid profile settings!"));
                 isValid = false;
             }
 
             bool applyDisabled = (strlen(nameBuf) == 0) || !isValid || 
                                 (bookmarks.find(editedBookmarkName) != bookmarks.end() && editedBookmarkName != firstEditedBookmarkName);
             if (applyDisabled) { style::beginDisabled(); }
-            if (ImGui::Button("Apply")) {
+            if (ImGui::Button(_("Apply"))) {
                 open = false;
 
                 // If editing, delete the original one
@@ -809,7 +817,7 @@ private:
             }
             if (applyDisabled) { style::endDisabled(); }
             ImGui::SameLine();
-            if (ImGui::Button("Cancel")) {
+            if (ImGui::Button(_("Cancel"))) {
                 open = false;
             }
             ImGui::EndPopup();
@@ -823,14 +831,14 @@ private:
 
         float menuWidth = ImGui::GetContentRegionAvail().x;
 
-        std::string id = "New##freq_manager_new_popup_" + name;
+        std::string id = _("New##freq_manager_new_popup_") + name;
         ImGui::OpenPopup(id.c_str());
 
         char nameBuf[1024];
         strcpy(nameBuf, editedListName.c_str());
 
         if (ImGui::BeginPopup(id.c_str(), ImGuiWindowFlags_NoResize)) {
-            ImGui::LeftLabel("Name");
+            ImGui::LeftLabel(_("Name"));
             ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
             if (ImGui::InputText(("##freq_manager_edit_name" + name).c_str(), nameBuf, 1023)) {
                 editedListName = nameBuf;
@@ -839,7 +847,7 @@ private:
             bool alreadyExists = (std::find(listNames.begin(), listNames.end(), editedListName) != listNames.end());
 
             if (strlen(nameBuf) == 0 || alreadyExists) { style::beginDisabled(); }
-            if (ImGui::Button("Apply")) {
+            if (ImGui::Button(_("Apply"))) {
                 open = false;
 
                 config.acquire();
@@ -858,7 +866,7 @@ private:
             }
             if (strlen(nameBuf) == 0 || alreadyExists) { style::endDisabled(); }
             ImGui::SameLine();
-            if (ImGui::Button("Cancel")) {
+            if (ImGui::Button(_("Cancel"))) {
                 open = false;
             }
             ImGui::EndPopup();
@@ -871,7 +879,7 @@ private:
 
         float menuWidth = ImGui::GetContentRegionAvail().x;
 
-        std::string id = "Select lists##freq_manager_sel_popup_" + name;
+        std::string id = _("Select lists##freq_manager_sel_popup_") + name;
         ImGui::OpenPopup(id.c_str());
 
         bool open = true;
@@ -888,7 +896,7 @@ private:
                 }
             }
 
-            if (ImGui::Button("Ok")) {
+            if (ImGui::Button(_("Ok"))) {
                 open = false;
             }
             ImGui::EndPopup();
@@ -995,7 +1003,7 @@ private:
 
         float lineHeight = ImGui::GetTextLineHeightWithSpacing();
 
-        float btnSize = ImGui::CalcTextSize("Rename").x + 8;
+        float btnSize = ImGui::CalcTextSize(_("Rename")).x + 8;
         ImGui::SetNextItemWidth(menuWidth - 24 - (2 * lineHeight) - btnSize);
         if (ImGui::Combo(("##freq_manager_list_sel" + _this->name).c_str(), &_this->selectedListId, _this->listNamesTxt.c_str())) {
             _this->loadByName(_this->listNames[_this->selectedListId]);
@@ -1005,7 +1013,7 @@ private:
         }
         ImGui::SameLine();
         if (_this->listNames.size() == 0) { style::beginDisabled(); }
-        if (ImGui::Button(("Rename##_freq_mgr_ren_lst_" + _this->name).c_str(), ImVec2(btnSize, 0))) {
+        if (ImGui::Button((std::string(_("Rename##_freq_mgr_ren_lst_")) + _this->name).c_str(), ImVec2(btnSize, 0))) {
             _this->firstEditedListName = _this->listNames[_this->selectedListId];
             _this->editedListName = _this->firstEditedListName;
             _this->renameListOpen = true;
@@ -1014,13 +1022,13 @@ private:
         ImGui::SameLine();
         if (ImGui::Button(("+##_freq_mgr_add_lst_" + _this->name).c_str(), ImVec2(lineHeight, 0))) {
             // Find new unique default name
-            if (std::find(_this->listNames.begin(), _this->listNames.end(), "New List") == _this->listNames.end()) {
-                _this->editedListName = "New List";
+            if (std::find(_this->listNames.begin(), _this->listNames.end(), _("New List")) == _this->listNames.end()) {
+                _this->editedListName = _("New List");
             }
             else {
                 char buf[64];
                 for (int i = 1; i < 1000; i++) {
-                    sprintf(buf, "New List (%d)", i);
+                    sprintf(buf, _("New List (%d)"), i);
                     if (std::find(_this->listNames.begin(), _this->listNames.end(), buf) == _this->listNames.end()) { break; }
                 }
                 _this->editedListName = buf;
@@ -1036,7 +1044,7 @@ private:
 
         // List delete confirmation
         if (ImGui::GenericDialog(("freq_manager_del_list_confirm" + _this->name).c_str(), _this->deleteListOpen, GENERIC_DIALOG_BUTTONS_YES_NO.c_str(), [_this]() {
-                ImGui::Text("Deleting list named \"%s\". Are you sure?", _this->selectedListName.c_str());
+                ImGui::Text(_("Deleting list named \"%s\". Are you sure?"), _this->selectedListName.c_str());
             }) == GENERIC_DIALOG_BUTTON_YES) {
             config.acquire();
             config.conf["lists"].erase(_this->selectedListName);
@@ -1058,7 +1066,7 @@ private:
         ImGui::TableNextRow();
 
         ImGui::TableSetColumnIndex(0);
-        if (ImGui::Button(("Add##_freq_mgr_add_" + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
+        if (ImGui::Button((_("Add##_freq_mgr_add_") + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
             // Reset bookmark to frequency mode
             _this->editedBookmark = FrequencyBookmark();
             _this->editedBookmark.isBand = false;
@@ -1085,13 +1093,13 @@ private:
             _this->createOpen = true;
 
             // Find new unique default name
-            if (_this->bookmarks.find("New Bookmark") == _this->bookmarks.end()) {
-                _this->editedBookmarkName = "New Bookmark";
+            if (_this->bookmarks.find(_("New Bookmark")) == _this->bookmarks.end()) {
+                _this->editedBookmarkName = _("New Bookmark");
             }
             else {
                 char buf[64];
                 for (int i = 1; i < 1000; i++) {
-                    sprintf(buf, "New Bookmark (%d)", i);
+                    sprintf(buf, _("New Bookmark (%d)"), i);
                     if (_this->bookmarks.find(buf) == _this->bookmarks.end()) { break; }
                 }
                 _this->editedBookmarkName = buf;
@@ -1103,7 +1111,7 @@ private:
         }
 
         ImGui::TableSetColumnIndex(1);
-        if (ImGui::Button(("Add Band##_freq_mgr_add_band_" + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
+        if (ImGui::Button((_("Add Band##_freq_mgr_add_band_") + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
             // Reset bookmark to band mode
             _this->editedBookmark = FrequencyBookmark();
             _this->editedBookmark.isBand = true;
@@ -1122,13 +1130,13 @@ private:
             _this->createOpen = true;
 
             // Find new unique default name
-            if (_this->bookmarks.find("New Band") == _this->bookmarks.end()) {
-                _this->editedBookmarkName = "New Band";
+            if (_this->bookmarks.find(_("New Band")) == _this->bookmarks.end()) {
+                _this->editedBookmarkName = _("New Band");
             }
             else {
                 char buf[64];
                 for (int i = 1; i < 1000; i++) {
-                    sprintf(buf, "New Band (%d)", i);
+                    sprintf(buf, _("New Band (%d)"), i);
                     if (_this->bookmarks.find(buf) == _this->bookmarks.end()) { break; }
                 }
                 _this->editedBookmarkName = buf;
@@ -1141,13 +1149,13 @@ private:
 
         ImGui::TableSetColumnIndex(2);
         if (selectedNames.size() == 0 && _this->selectedListName != "") { style::beginDisabled(); }
-        if (ImGui::Button(("Remove##_freq_mgr_rem_" + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
+        if (ImGui::Button((_("Remove##_freq_mgr_rem_") + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
             _this->deleteBookmarksOpen = true;
         }
         if (selectedNames.size() == 0 && _this->selectedListName != "") { style::endDisabled(); }
         ImGui::TableSetColumnIndex(3);
         if (selectedNames.size() != 1 && _this->selectedListName != "") { style::beginDisabled(); }
-        if (ImGui::Button(("Edit##_freq_mgr_edt_" + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
+        if (ImGui::Button((_("Edit##_freq_mgr_edt_") + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
             _this->editOpen = true;
             _this->editedBookmark = _this->bookmarks[selectedNames[0]];
             _this->editedBookmarkName = selectedNames[0];
@@ -1170,7 +1178,7 @@ private:
         // Bookmark delete confirm dialog
         // List delete confirmation
         if (ImGui::GenericDialog(("freq_manager_del_list_confirm" + _this->name).c_str(), _this->deleteBookmarksOpen, GENERIC_DIALOG_BUTTONS_YES_NO.c_str(), [_this]() {
-                ImGui::TextUnformatted("Deleting selected bookmaks. Are you sure?");
+                ImGui::TextUnformatted(_("Deleting selected bookmaks. Are you sure?"));
             }) == GENERIC_DIALOG_BUTTON_YES) {
             for (auto& _name : selectedNames) { _this->bookmarks.erase(_name); }
             _this->saveByName(_this->selectedListName);
@@ -1179,23 +1187,23 @@ private:
 
         // Bookmark list
         if (ImGui::BeginTable(("freq_manager_bkm_table" + _this->name).c_str(), 5, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg | ImGuiTableFlags_ScrollY, ImVec2(0, 200.0f * style::uiScale))) {
-            ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+            ImGui::TableSetupColumn(_("Type"), ImGuiTableColumnFlags_WidthFixed, 50.0f);
             ImGui::TableSetupColumn("P", ImGuiTableColumnFlags_WidthFixed, 20.0f);  // Profile indicator
             ImGui::TableSetupColumn("S", ImGuiTableColumnFlags_WidthFixed, 20.0f);  // Scanner toggle
-            ImGui::TableSetupColumn("Name");
-            ImGui::TableSetupColumn("Details");
+            ImGui::TableSetupColumn(_("Name"));
+            ImGui::TableSetupColumn(_("Details"));
             ImGui::TableSetupScrollFreeze(5, 1);
             ImGui::TableHeadersRow();
             
             // Add helpful tooltip for new UX functionality
             if (ImGui::IsItemHovered()) {
                 ImGui::BeginTooltip();
-                ImGui::Text("Frequency Manager Controls:");
+                ImGui::Text(_("Frequency Manager Controls:"));
                 ImGui::Separator();
-                ImGui::Text("- Single-click: Select entry");
-                ImGui::Text("- Double-click: Apply entry (tune to frequency)");
-                ImGui::Text("- Right-click: Edit entry");
-                ImGui::Text("- Edit button: Edit selected entry");
+                ImGui::Text(_("- Single-click: Select entry"));
+                ImGui::Text(_("- Double-click: Apply entry (tune to frequency)"));
+                ImGui::Text(_("- Right-click: Edit entry"));
+                ImGui::Text(_("- Edit button: Edit selected entry"));
                 ImGui::EndTooltip();
             }
             for (auto& [name, bm] : _this->bookmarks) {
@@ -1204,9 +1212,9 @@ private:
                 // Type column with color-coded indicators
                 ImGui::TableSetColumnIndex(0);
                 if (bm.isBand) {
-                    ImGui::TextColored(ImVec4(0.2f, 0.8f, 0.2f, 1.0f), "Band");
+                    ImGui::TextColored(ImVec4(0.2f, 0.8f, 0.2f, 1.0f), _("Band"));
                 } else {
-                    ImGui::TextColored(ImVec4(0.2f, 0.6f, 1.0f, 1.0f), "Freq");
+                    ImGui::TextColored(ImVec4(0.2f, 0.6f, 1.0f, 1.0f), _("Freq"));
                 }
                 
                 // Profile indicator column
@@ -1216,11 +1224,11 @@ private:
                     if (ImGui::IsItemHovered()) {
                         const TuningProfile* prof = bm.getProfile();
                         ImGui::BeginTooltip();
-                        ImGui::Text("Profile: %s", prof->name.empty() ? prof->generateAutoName().c_str() : prof->name.c_str());
-                        ImGui::Text("Mode: %s", demodModeList[prof->demodMode]);
-                        ImGui::Text("Bandwidth: %.1f kHz", prof->bandwidth / 1000.0f);
+                        ImGui::Text(_("Profile: %s"), prof->name.empty() ? prof->generateAutoName().c_str() : prof->name.c_str());
+                        ImGui::Text(_("Mode: %s"), demodModeList[prof->demodMode]);
+                        ImGui::Text(_("Bandwidth: %.1f kHz"), prof->bandwidth / 1000.0f);
                         if (prof->squelchEnabled) {
-                            ImGui::Text("Squelch: %.1f dB", prof->squelchLevel);
+                            ImGui::Text(_("Squelch: %.1f dB"), prof->squelchLevel);
                         }
                         ImGui::EndTooltip();
                     }
@@ -1237,8 +1245,8 @@ private:
                     _this->markScanListDirty();  // PERFORMANCE: Immediate scanner update
                 }
                 if (ImGui::IsItemHovered()) {
-                    ImGui::SetTooltip("Include this entry in scanner frequency list\n%s", 
-                                    isScannable ? "Scanner will tune to this frequency" : "Scanner will skip this entry");
+                    ImGui::SetTooltip(_("Include this entry in scanner frequency list\n%s", 
+                                    isScannable ? "Scanner will tune to this frequency" : "Scanner will skip this entry"));
                 }
                 
                 // Name column
@@ -1291,7 +1299,7 @@ private:
                     // Band details: start-end MHz, step, span
                     double spanMHz = (bm.endFreq - bm.startFreq) / 1e6;
                     double stepkHz = bm.stepFreq / 1e3;
-                    ImGui::Text("%.3f-%.3f MHz (%.0f kHz, %.1f MHz span)", 
+                    ImGui::Text(_("%.3f-%.3f MHz (%.0f kHz, %.1f MHz span)"), 
                                bm.startFreq / 1e6, bm.endFreq / 1e6, stepkHz, spanMHz);
                 } else {
                     // Frequency details: frequency and mode
@@ -1304,7 +1312,7 @@ private:
 
 
         if (selectedNames.size() != 1 && _this->selectedListName != "") { style::beginDisabled(); }
-        if (ImGui::Button(("Apply##_freq_mgr_apply_" + _this->name).c_str(), ImVec2(menuWidth, 0))) {
+        if (ImGui::Button((std::string(_("Apply##_freq_mgr_apply_")) + _this->name).c_str(), ImVec2(menuWidth, 0))) {
             FrequencyBookmark& bm = _this->bookmarks[selectedNames[0]];
             applyBookmark(bm, gui::waterfall.selectedVFO);
             bm.selected = false;
@@ -1316,14 +1324,14 @@ private:
         ImGui::TableNextRow();
 
         ImGui::TableSetColumnIndex(0);
-        if (ImGui::Button(("Import##_freq_mgr_imp_" + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)) && !_this->importOpen) {
+        if (ImGui::Button((std::string(_("Import##_freq_mgr_imp_")) + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)) && !_this->importOpen) {
             _this->importOpen = true;
-            _this->importDialog = new pfd::open_file("Import bookmarks", "", { "JSON Files (*.json)", "*.json", "All Files", "*" }, pfd::opt::multiselect);
+            _this->importDialog = new pfd::open_file(_("Import bookmarks"), "", { _("JSON Files (*.json)"), "*.json", _("All Files"), "*" }, pfd::opt::multiselect);
         }
 
         ImGui::TableSetColumnIndex(1);
         if (selectedNames.size() == 0 && _this->selectedListName != "") { style::beginDisabled(); }
-        if (ImGui::Button(("Export##_freq_mgr_exp_" + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)) && !_this->exportOpen) {
+        if (ImGui::Button((std::string(_("Export##_freq_mgr_exp_")) + _this->name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)) && !_this->exportOpen) {
             _this->exportedBookmarks = json::object();
             config.acquire();
             for (auto& _name : selectedNames) {
@@ -1331,16 +1339,16 @@ private:
             }
             config.release();
             _this->exportOpen = true;
-            _this->exportDialog = new pfd::save_file("Export bookmarks", "", { "JSON Files (*.json)", "*.json", "All Files", "*" });
+            _this->exportDialog = new pfd::save_file(_("Export bookmarks"), "", { _("JSON Files (*.json)"), "*.json", _("All Files"), "*" });
         }
         if (selectedNames.size() == 0 && _this->selectedListName != "") { style::endDisabled(); }
         ImGui::EndTable();
 
-        if (ImGui::Button(("Select displayed lists##_freq_mgr_exp_" + _this->name).c_str(), ImVec2(menuWidth, 0))) {
+        if (ImGui::Button((std::string(_("Select displayed lists##_freq_mgr_exp_")) + _this->name).c_str(), ImVec2(menuWidth, 0))) {
             _this->selectListsOpen = true;
         }
 
-        ImGui::LeftLabel("Bookmark display mode");
+        ImGui::LeftLabel(_("Bookmark display mode"));
         ImGui::SetNextItemWidth(menuWidth - ImGui::GetCursorPosX());
         if (ImGui::Combo(("##_freq_mgr_dms_" + _this->name).c_str(), &_this->bookmarkDisplayMode, bookmarkDisplayModesTxt)) {
             config.acquire();
@@ -1526,10 +1534,10 @@ private:
         ImGui::BeginTooltip();
         ImGui::TextUnformatted(hoveredBookmarkName.c_str());
         ImGui::Separator();
-        ImGui::Text("List: %s", hoveredBookmark.listName.c_str());
-        ImGui::Text("Frequency: %s", utils::formatFreq(hoveredBookmark.bookmark.frequency).c_str());
-        ImGui::Text("Bandwidth: %s", utils::formatFreq(hoveredBookmark.bookmark.bandwidth).c_str());
-        ImGui::Text("Mode: %s", demodModeList[hoveredBookmark.bookmark.mode]);
+        ImGui::Text(_("List: %s"), hoveredBookmark.listName.c_str());
+        ImGui::Text(_("Frequency: %s"), utils::formatFreq(hoveredBookmark.bookmark.frequency).c_str());
+        ImGui::Text(_("Bandwidth: %s"), utils::formatFreq(hoveredBookmark.bookmark.bandwidth).c_str());
+        ImGui::Text(_("Mode: %s"), demodModeList[hoveredBookmark.bookmark.mode]);
         ImGui::EndTooltip();
     }
 
