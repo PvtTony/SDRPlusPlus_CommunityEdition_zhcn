@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-05 07:02+0800\n"
-"PO-Revision-Date: 2025-12-05 07:19+0800\n"
+"POT-Creation-Date: 2025-12-05 08:30+0800\n"
+"PO-Revision-Date: 2025-12-05 08:31+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -183,6 +183,14 @@ msgstr ""
 "当前步进值：%.1f MHz\n"
 "\n"
 "%s"
+
+#: misc_modules/frequency_manager/src/main.cpp:631
+msgid "WARNING: Step exceeds limits!"
+msgstr "警告：步进值超出限制！"
+
+#: misc_modules/frequency_manager/src/main.cpp:632
+msgid "Step frequency is within valid range."
+msgstr "步进频率处于有效范围内。"
 
 #: misc_modules/frequency_manager/src/main.cpp:639
 msgid "Notes"
@@ -403,6 +411,14 @@ msgid ""
 msgstr ""
 "将此条目纳入扫描频率列表\n"
 "%s"
+
+#: misc_modules/frequency_manager/src/main.cpp:1249
+msgid "Scanner will tune to this frequency"
+msgstr "扫描仪将调谐至此频率"
+
+#: misc_modules/frequency_manager/src/main.cpp:1249
+msgid "Scanner will skip this entry"
+msgstr "扫描仪将跳过此记录"
 
 #: misc_modules/frequency_manager/src/main.cpp:1302
 #, c-format

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-05 07:02+0800\n"
+"POT-Creation-Date: 2025-12-05 08:30+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,6 +148,14 @@ msgid ""
 "Current step: %.1f MHz\n"
 "\n"
 "%s"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:631
+msgid "WARNING: Step exceeds limits!"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:632
+msgid "Step frequency is within valid range."
 msgstr ""
 
 #: misc_modules/frequency_manager/src/main.cpp:639
@@ -366,6 +374,14 @@ msgstr ""
 msgid ""
 "Include this entry in scanner frequency list\n"
 "%s"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1249
+msgid "Scanner will tune to this frequency"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1249
+msgid "Scanner will skip this entry"
 msgstr ""
 
 #: misc_modules/frequency_manager/src/main.cpp:1302

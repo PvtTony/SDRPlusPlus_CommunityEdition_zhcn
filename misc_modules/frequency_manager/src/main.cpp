@@ -624,12 +624,12 @@ private:
                                      "Maximum allowed step: %.1f MHz\n"
                                      "Current step: %.1f MHz\n"
                                      "\n"
-                                     "%s",
+                                     "%s"),
                                      bandBandwidth / 1e6, sdrBandwidth / 1e6,
                                      maxAllowedStep / 1e6, editedBookmark.stepFreq / 1e6,
                                      editedBookmark.stepFreq > maxAllowedStep ? 
-                                     "WARNING: Step exceeds limits!" : 
-                                     "Step frequency is within valid range."));
+                                     _("WARNING: Step exceeds limits!") : 
+                                     _("Step frequency is within valid range."));
                 }
                 
 
@@ -1245,8 +1245,8 @@ private:
                     _this->markScanListDirty();  // PERFORMANCE: Immediate scanner update
                 }
                 if (ImGui::IsItemHovered()) {
-                    ImGui::SetTooltip(_("Include this entry in scanner frequency list\n%s", 
-                                    isScannable ? "Scanner will tune to this frequency" : "Scanner will skip this entry"));
+                    ImGui::SetTooltip(_("Include this entry in scanner frequency list\n%s"), 
+                                    isScannable ? _("Scanner will tune to this frequency") : _("Scanner will skip this entry"));
                 }
                 
                 // Name column
