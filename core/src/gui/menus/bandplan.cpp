@@ -10,7 +10,7 @@ namespace bandplanmenu {
     bool bandPlanEnabled;
     int bandPlanPos = 0;
 
-    const char* bandPlanPosTxt = (std::string(_("Bottom")) + '\0' + _("Top") + '\0').c_str();
+    const std::string bandPlanPosTxt = std::string(_("Bottom")) + '\0' + _("Top") + '\0';
 
     void init() {
         // todo: check if the bandplan wasn't removed
@@ -48,7 +48,7 @@ namespace bandplanmenu {
 
         ImGui::LeftLabel(_("Position"));
         ImGui::SetNextItemWidth(menuColumnWidth - ImGui::GetCursorPosX());
-        if (ImGui::Combo("##_bandplan_pos_", &bandPlanPos, bandPlanPosTxt)) {
+        if (ImGui::Combo("##_bandplan_pos_", &bandPlanPos, bandPlanPosTxt.c_str())) {
             gui::waterfall.setBandPlanPos(bandPlanPos);
             core::configManager.acquire();
             core::configManager.conf["bandPlanPos"] = bandPlanPos;
