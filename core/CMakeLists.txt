@@ -149,6 +149,7 @@ else()
         ${GLFW3_INCLUDE_DIRS}
         ${VOLK_INCLUDE_DIRS}
         ${LIBZSTD_INCLUDE_DIRS}
+        ${Intl_INCLUDE_DIRS}
     )
     
     target_link_directories(sdrpp_core PUBLIC
@@ -157,6 +158,7 @@ else()
         ${GLFW3_LIBRARY_DIRS}
         ${VOLK_LIBRARY_DIRS}
         ${LIBZSTD_LIBRARY_DIRS}
+        ${Intl_LIBRARY_DIRS}
     )
 
     target_link_libraries(sdrpp_core PUBLIC
@@ -165,12 +167,8 @@ else()
         ${GLFW3_LIBRARIES}
         ${VOLK_LIBRARIES}
         ${LIBZSTD_LIBRARIES}
+        ${Intl_LIBRARIES}
     )
-
-    if(Intl_FOUND)
-        target_link_libraries(sdrpp_core PUBLIC Intl::Intl)
-        target_include_directories(sdrpp_core PUBLIC ${Intl_INCLUDE_DIRS})
-    endif()
 
     if (NOT USE_INTERNAL_LIBCORRECT)
         pkg_check_modules(CORRECT REQUIRED libcorrect)
