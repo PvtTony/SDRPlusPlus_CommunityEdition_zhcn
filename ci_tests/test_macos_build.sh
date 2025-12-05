@@ -112,11 +112,11 @@ echo "🚀 Testing Application Startup..."
 if [ -d "$BUNDLE_PATH" ]; then
     # Use gtimeout if available, otherwise manual timeout
     if command -v gtimeout >/dev/null 2>&1; then
-        gtimeout 10s "$BUNDLE_PATH/Contents/MacOS/sdrpp_ce" --help > /dev/null 2>&1
+        gtimeout 10s "$BUNDLE_PATH/Contents/MacOS/sdrpp_ce" --help
         STARTUP_RESULT=$?
     else
         # Manual timeout using background process
-        "$BUNDLE_PATH/Contents/MacOS/sdrpp_ce" --help > /dev/null 2>&1 &
+        "$BUNDLE_PATH/Contents/MacOS/sdrpp_ce" --help &
         STARTUP_PID=$!
         sleep 5
         if kill -0 $STARTUP_PID 2>/dev/null; then
@@ -136,11 +136,11 @@ if [ -d "$BUNDLE_PATH" ]; then
 else
     # Test build directory executable if bundle doesn't exist
     if command -v gtimeout >/dev/null 2>&1; then
-        gtimeout 10s "$BUILD_DIR/sdrpp_ce" --help > /dev/null 2>&1
+        gtimeout 10s "$BUILD_DIR/sdrpp_ce" --help 
         STARTUP_RESULT=$?
     else
         # Manual timeout using background process
-        "$BUILD_DIR/sdrpp_ce" --help > /dev/null 2>&1 &
+        "$BUILD_DIR/sdrpp_ce" --help  &
         STARTUP_PID=$!
         sleep 5
         if kill -0 $STARTUP_PID 2>/dev/null; then

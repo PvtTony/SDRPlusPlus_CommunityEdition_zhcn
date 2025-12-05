@@ -83,6 +83,22 @@ if (OPT_OVERRIDE_STD_FILESYSTEM)
     target_include_directories(sdrpp_core PUBLIC "std_replacement")
 endif (OPT_OVERRIDE_STD_FILESYSTEM)
 
+# gettext
+if (APPLE)
+    # Homebrew (Apple Silicon)
+    if (EXISTS "/opt/homebrew/opt/gettext")
+        list(APPEND CMAKE_PREFIX_PATH "/opt/homebrew/opt/gettext")
+        include_directories("/opt/homebrew/opt/gettext/include")
+        link_directories("/opt/homebrew/opt/gettext/lib")
+    
+    # Homebrew (Intel)
+    elseif (EXISTS "/usr/local/opt/gettext")
+        list(APPEND CMAKE_PREFIX_PATH "/usr/local/opt/gettext")
+        include_directories("/usr/local/opt/gettext/include")
+        link_directories("/usr/local/opt/gettext/lib")
+    endif()
+endif()
+
 if (MSVC)
     # Lib path
     target_link_directories(sdrpp_core PUBLIC "C:/Program Files/PothosSDR/lib/")
@@ -115,7 +131,7 @@ if (MSVC)
     # gettext
     find_package(Intl REQUIRED)
     if(Intl_FOUND)
-        target_link_libraries(sdrpp_core PUBLIC  Intl::Intl)
+        target_link_libraries(sdrpp_core PUBLIC Intl::Intl)
         target_include_directories(sdrpp_core PUBLIC ${Intl_INCLUDE_DIRS})
     endif()
 elseif (ANDROID)

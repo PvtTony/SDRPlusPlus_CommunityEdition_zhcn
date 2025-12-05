@@ -84,5 +84,16 @@ bundle_install_binary $BUNDLE $BUNDLE/Contents/Plugins $BUILD_DIR/misc_modules/s
 
 # ========================= Finalize =========================
 
+# Fix libintl dependency: Force it to use system libiconv to avoid symbol mismatch (_iconv vs _libiconv)
+echo "🔧 Patching libintl to use system libiconv..."
+if [ -f "$BUNDLE/Contents/Frameworks/libintl.8.dylib" ]; then
+    # 将 @rpath 依赖修改为绝对系统路径
+    install_name_tool -change @rpath/libiconv.2.dylib /usr/lib/libiconv.2.dylib "$BUNDLE/Contents/Frameworks/libintl.8.dylib"
+    
+    # 预防万一，也处理一下可能存在的 Homebrew 绝对路径引用
+    install_name_tool -change /opt/homebrew/opt/libiconv/lib/libiconv.2.dylib /usr/lib/libiconv.2.dylib "$BUNDLE/Contents/Frameworks/libintl.8.dylib"
+    install_name_tool -change /usr/local/opt/libiconv/lib/libiconv.2.dylib /usr/lib/libiconv.2.dylib "$BUNDLE/Contents/Frameworks/libintl.8.dylib"
+fi
+
 # Sign the app
 bundle_sign $BUNDLE

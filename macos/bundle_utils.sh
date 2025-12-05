@@ -28,6 +28,7 @@ bundle_is_not_to_be_installed() {
     if [ "$1" = "Security" ]; then echo 1; fi
     if [ "$1" = "AppleFSCompression" ]; then echo 1; fi
 
+    if [ "$1" = "libiconv.2.dylib" ]; then echo 1; fi
     if [ "$1" = "libxml2.2.dylib" ]; then echo 1; fi
 }
 
@@ -101,7 +102,7 @@ bundle_find_full_path() {
         echo /Library/Frameworks/$RPATH_NEXT 
         return
     fi
-    
+
     # Special case for SDRPlay API library
     if [ "$RPATH_NEXT" = "libsdrplay_api.so.3" ] && [ -f /usr/local/lib/libsdrplay_api.so.3 ]; then
         echo /usr/local/lib/libsdrplay_api.so.3
