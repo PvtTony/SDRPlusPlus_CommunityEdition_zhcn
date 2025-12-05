@@ -52,6 +52,7 @@
     "menuWidth": 400,
     "min": -120.0,
     "modulesDirectory": "./modules",
+    "localeDirectory": "./locale",
     "mpxLineWidth": 2.5,
     "mpxRefreshRate": 10,
     "mpxSmoothingFactor": 3,

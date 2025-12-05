@@ -51,7 +51,8 @@ public:
         this->name = name;
 
         // Initialize gettext domain
-        bindtextdomain(MODULE_DOMAIN, "./locale");
+        std::string localeDir = core::configManager.conf["localeDirectory"];
+        bindtextdomain(MODULE_DOMAIN, localeDir.c_str());
         bind_textdomain_codeset(MODULE_DOMAIN, "UTF-8");
 
         // Initialize option lists

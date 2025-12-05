@@ -18,6 +18,9 @@ bundle_create_struct $BUNDLE
 # Add resources
 cp -R root/res/* $BUNDLE/Contents/Resources/
 
+# Add locale
+cp -R root/locale/* $BUNDLE/Contents/Resources/Locale
+
 # Create the icon file
 bundle_create_icns root/res/icons/sdrpp_ce.macos.png $BUNDLE/Contents/Resources/sdrppce
 

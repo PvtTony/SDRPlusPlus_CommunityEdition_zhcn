@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-05 08:30+0800\n"
+"POT-Creation-Date: 2025-12-05 09:13+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,48 +61,48 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:315
+#: misc_modules/frequency_manager/src/main.cpp:316
 msgid "FrequencyManager"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:510
+#: misc_modules/frequency_manager/src/main.cpp:511
 msgid "Edit##freq_manager_edit_popup_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:522
-#: misc_modules/frequency_manager/src/main.cpp:841
-#: misc_modules/frequency_manager/src/main.cpp:1193
+#: misc_modules/frequency_manager/src/main.cpp:523
+#: misc_modules/frequency_manager/src/main.cpp:842
+#: misc_modules/frequency_manager/src/main.cpp:1194
 msgid "Name"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:532
-#: misc_modules/frequency_manager/src/main.cpp:1190
+#: misc_modules/frequency_manager/src/main.cpp:533
+#: misc_modules/frequency_manager/src/main.cpp:1191
 msgid "Type"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:535
-#: misc_modules/frequency_manager/src/main.cpp:651
+#: misc_modules/frequency_manager/src/main.cpp:536
+#: misc_modules/frequency_manager/src/main.cpp:652
 msgid "Frequency"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:535
-#: misc_modules/frequency_manager/src/main.cpp:1215
+#: misc_modules/frequency_manager/src/main.cpp:536
+#: misc_modules/frequency_manager/src/main.cpp:1216
 msgid "Band"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:551
+#: misc_modules/frequency_manager/src/main.cpp:552
 msgid "Start Freq"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:558
+#: misc_modules/frequency_manager/src/main.cpp:559
 msgid "End Freq"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:565
+#: misc_modules/frequency_manager/src/main.cpp:566
 msgid "Step"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:568
+#: misc_modules/frequency_manager/src/main.cpp:569
 #, c-format
 msgid ""
 "Frequency step size for band scanning (Hz)\n"
@@ -132,12 +132,12 @@ msgid ""
 "TIP: Larger steps work great with small intervals (FFT magic!)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:615
+#: misc_modules/frequency_manager/src/main.cpp:616
 #, c-format
 msgid "Max: %.1f MHz (Band: %.1f, SDR: %.1f)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:620
+#: misc_modules/frequency_manager/src/main.cpp:621
 #, c-format
 msgid ""
 "Step frequency is limited by:\n"
@@ -150,294 +150,294 @@ msgid ""
 "%s"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:631
+#: misc_modules/frequency_manager/src/main.cpp:632
 msgid "WARNING: Step exceeds limits!"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:632
+#: misc_modules/frequency_manager/src/main.cpp:633
 msgid "Step frequency is within valid range."
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:639
+#: misc_modules/frequency_manager/src/main.cpp:640
 msgid "Notes"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:658
+#: misc_modules/frequency_manager/src/main.cpp:659
 msgid "Bandwidth"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:665
-#: misc_modules/frequency_manager/src/main.cpp:737
+#: misc_modules/frequency_manager/src/main.cpp:666
+#: misc_modules/frequency_manager/src/main.cpp:738
 msgid "Mode"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:677
+#: misc_modules/frequency_manager/src/main.cpp:678
 msgid "Scanner Integration"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:679
+#: misc_modules/frequency_manager/src/main.cpp:680
 msgid "Include in Scanner"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:683
+#: misc_modules/frequency_manager/src/main.cpp:684
 msgid "When enabled, this entry will be included in scanner frequency list"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:690
+#: misc_modules/frequency_manager/src/main.cpp:691
 msgid "Tuning Profile"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:695
+#: misc_modules/frequency_manager/src/main.cpp:696
 msgid "Enable Tuning Profile"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:721
+#: misc_modules/frequency_manager/src/main.cpp:722
 msgid "Profile Name"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:729
+#: misc_modules/frequency_manager/src/main.cpp:730
 msgid "Auto-Name"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:743
+#: misc_modules/frequency_manager/src/main.cpp:744
 msgid "Bandwidth (Hz)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:750
+#: misc_modules/frequency_manager/src/main.cpp:751
 msgid "Squelch Enabled"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:756
+#: misc_modules/frequency_manager/src/main.cpp:757
 msgid "Squelch Level (dB)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:764
+#: misc_modules/frequency_manager/src/main.cpp:765
 msgid "Advanced Settings"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:767
+#: misc_modules/frequency_manager/src/main.cpp:768
 msgid "RF Gain (dB)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:773
+#: misc_modules/frequency_manager/src/main.cpp:774
 msgid "AGC Enabled"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:778
+#: misc_modules/frequency_manager/src/main.cpp:779
 msgid "Center Offset (Hz)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:794
+#: misc_modules/frequency_manager/src/main.cpp:795
 msgid "Invalid configuration!"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:799
+#: misc_modules/frequency_manager/src/main.cpp:800
 msgid "Invalid profile settings!"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:806
-#: misc_modules/frequency_manager/src/main.cpp:850
+#: misc_modules/frequency_manager/src/main.cpp:807
+#: misc_modules/frequency_manager/src/main.cpp:851
 msgid "Apply"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:820
-#: misc_modules/frequency_manager/src/main.cpp:869
+#: misc_modules/frequency_manager/src/main.cpp:821
+#: misc_modules/frequency_manager/src/main.cpp:870
 msgid "Cancel"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:834
+#: misc_modules/frequency_manager/src/main.cpp:835
 msgid "New##freq_manager_new_popup_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:882
+#: misc_modules/frequency_manager/src/main.cpp:883
 msgid "Select lists##freq_manager_sel_popup_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:899
+#: misc_modules/frequency_manager/src/main.cpp:900
 msgid "Ok"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1006
+#: misc_modules/frequency_manager/src/main.cpp:1007
 msgid "Rename"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1016
+#: misc_modules/frequency_manager/src/main.cpp:1017
 msgid "Rename##_freq_mgr_ren_lst_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1025
 #: misc_modules/frequency_manager/src/main.cpp:1026
+#: misc_modules/frequency_manager/src/main.cpp:1027
 msgid "New List"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1031
+#: misc_modules/frequency_manager/src/main.cpp:1032
 #, c-format
 msgid "New List (%d)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1047
+#: misc_modules/frequency_manager/src/main.cpp:1048
 #, c-format
 msgid "Deleting list named \"%s\". Are you sure?"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1069
+#: misc_modules/frequency_manager/src/main.cpp:1070
 msgid "Add##_freq_mgr_add_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1096
 #: misc_modules/frequency_manager/src/main.cpp:1097
+#: misc_modules/frequency_manager/src/main.cpp:1098
 msgid "New Bookmark"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1102
+#: misc_modules/frequency_manager/src/main.cpp:1103
 #, c-format
 msgid "New Bookmark (%d)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1114
+#: misc_modules/frequency_manager/src/main.cpp:1115
 msgid "Add Band##_freq_mgr_add_band_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1133
 #: misc_modules/frequency_manager/src/main.cpp:1134
+#: misc_modules/frequency_manager/src/main.cpp:1135
 msgid "New Band"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1139
+#: misc_modules/frequency_manager/src/main.cpp:1140
 #, c-format
 msgid "New Band (%d)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1152
+#: misc_modules/frequency_manager/src/main.cpp:1153
 msgid "Remove##_freq_mgr_rem_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1158
+#: misc_modules/frequency_manager/src/main.cpp:1159
 msgid "Edit##_freq_mgr_edt_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1181
+#: misc_modules/frequency_manager/src/main.cpp:1182
 msgid "Deleting selected bookmaks. Are you sure?"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1194
+#: misc_modules/frequency_manager/src/main.cpp:1195
 msgid "Details"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1201
+#: misc_modules/frequency_manager/src/main.cpp:1202
 msgid "Frequency Manager Controls:"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1203
+#: misc_modules/frequency_manager/src/main.cpp:1204
 msgid "- Single-click: Select entry"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1204
+#: misc_modules/frequency_manager/src/main.cpp:1205
 msgid "- Double-click: Apply entry (tune to frequency)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1205
+#: misc_modules/frequency_manager/src/main.cpp:1206
 msgid "- Right-click: Edit entry"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1206
+#: misc_modules/frequency_manager/src/main.cpp:1207
 msgid "- Edit button: Edit selected entry"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1217
+#: misc_modules/frequency_manager/src/main.cpp:1218
 msgid "Freq"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1227
+#: misc_modules/frequency_manager/src/main.cpp:1228
 #, c-format
 msgid "Profile: %s"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1228
-#: misc_modules/frequency_manager/src/main.cpp:1540
+#: misc_modules/frequency_manager/src/main.cpp:1229
+#: misc_modules/frequency_manager/src/main.cpp:1541
 #, c-format
 msgid "Mode: %s"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1229
+#: misc_modules/frequency_manager/src/main.cpp:1230
 #, c-format
 msgid "Bandwidth: %.1f kHz"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1231
+#: misc_modules/frequency_manager/src/main.cpp:1232
 #, c-format
 msgid "Squelch: %.1f dB"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1248
+#: misc_modules/frequency_manager/src/main.cpp:1249
 #, c-format
 msgid ""
 "Include this entry in scanner frequency list\n"
 "%s"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1249
+#: misc_modules/frequency_manager/src/main.cpp:1250
 msgid "Scanner will tune to this frequency"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1249
+#: misc_modules/frequency_manager/src/main.cpp:1250
 msgid "Scanner will skip this entry"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1302
+#: misc_modules/frequency_manager/src/main.cpp:1303
 #, c-format
 msgid "%.3f-%.3f MHz (%.0f kHz, %.1f MHz span)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1315
+#: misc_modules/frequency_manager/src/main.cpp:1316
 msgid "Apply##_freq_mgr_apply_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1327
+#: misc_modules/frequency_manager/src/main.cpp:1328
 msgid "Import##_freq_mgr_imp_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1329
+#: misc_modules/frequency_manager/src/main.cpp:1330
 msgid "Import bookmarks"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1329
-#: misc_modules/frequency_manager/src/main.cpp:1342
+#: misc_modules/frequency_manager/src/main.cpp:1330
+#: misc_modules/frequency_manager/src/main.cpp:1343
 msgid "JSON Files (*.json)"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1329
-#: misc_modules/frequency_manager/src/main.cpp:1342
+#: misc_modules/frequency_manager/src/main.cpp:1330
+#: misc_modules/frequency_manager/src/main.cpp:1343
 msgid "All Files"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1334
+#: misc_modules/frequency_manager/src/main.cpp:1335
 msgid "Export##_freq_mgr_exp_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1342
+#: misc_modules/frequency_manager/src/main.cpp:1343
 msgid "Export bookmarks"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1347
+#: misc_modules/frequency_manager/src/main.cpp:1348
 msgid "Select displayed lists##_freq_mgr_exp_"
 msgstr ""
 
-#: misc_modules/frequency_manager/src/main.cpp:1351
+#: misc_modules/frequency_manager/src/main.cpp:1352
 msgid "Bookmark display mode"
-msgstr ""
-
-#: misc_modules/frequency_manager/src/main.cpp:1537
-#, c-format
-msgid "List: %s"
 msgstr ""
 
 #: misc_modules/frequency_manager/src/main.cpp:1538
 #, c-format
-msgid "Frequency: %s"
+msgid "List: %s"
 msgstr ""
 
 #: misc_modules/frequency_manager/src/main.cpp:1539
+#, c-format
+msgid "Frequency: %s"
+msgstr ""
+
+#: misc_modules/frequency_manager/src/main.cpp:1540
 #, c-format
 msgid "Bandwidth: %s"
 msgstr ""

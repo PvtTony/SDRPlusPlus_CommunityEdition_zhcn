@@ -104,13 +104,6 @@ int sdrpp_main(int argc, char* argv[]) {
         return -1;
     }
 
-    // gettext init
-    setlocale(LC_ALL, ""); 
-    const char* core_domain = "sdrpp_core";
-    bindtextdomain(core_domain, "./locale");
-    bind_textdomain_codeset(core_domain, "UTF-8");
-    textdomain(core_domain);
-
     // ======== DEFAULT CONFIG ========
     json defConfig;
     defConfig["bandColors"]["amateur"] = "#FF0000FF";
@@ -286,15 +279,19 @@ int sdrpp_main(int argc, char* argv[]) {
 #if defined(_WIN32)
     defConfig["modulesDirectory"] = "./modules";
     defConfig["resourcesDirectory"] = "./res";
+    defConfig["localeDirectory"] = "./locale";
 #elif defined(IS_MACOS_BUNDLE)
     defConfig["modulesDirectory"] = "../Plugins";
     defConfig["resourcesDirectory"] = "../Resources";
+    defConfig["localeDirectory"] = "../Resources/Locale";
 #elif defined(__ANDROID__)
     defConfig["modulesDirectory"] = root + "/modules";
     defConfig["resourcesDirectory"] = root + "/res";
+    defConfig["localeDirectory"] = "./locale";
 #else
     defConfig["modulesDirectory"] = INSTALL_PREFIX "/lib/sdrpp/plugins";
     defConfig["resourcesDirectory"] = INSTALL_PREFIX "/share/sdrpp";
+    defConfig["localeDirectory"] = "./locale";
 #endif
 
     // Load config
@@ -333,6 +330,15 @@ int sdrpp_main(int argc, char* argv[]) {
     core::configManager.conf["modules"][modCount++] = "rigctl_server.so";
     core::configManager.conf["modules"][modCount++] = "scanner.so";
 #endif
+
+
+    // gettext init
+    setlocale(LC_ALL, ""); 
+    const char* core_domain = "sdrpp_core";
+    std::string localeDir = core::configManager.conf["localeDirectory"];
+    bindtextdomain(core_domain, localeDir.c_str());
+    bind_textdomain_codeset(core_domain, "UTF-8");
+    textdomain(core_domain);
 
     // Fix missing elements in config
     for (auto const& item : defConfig.items()) {
